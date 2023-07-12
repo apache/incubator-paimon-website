@@ -1,0 +1,1096 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hive #  This documentation is a guide for using Table Store in Hive.
+Version #  Table Store currently supports Hive 2.1, 2.2, 2.3 and 3.1.
+Execution Engine #  Table Store currently supports MR and Tez execution engine for Hive.
+Installation #  Download the jar file with corresponding version.
+    Jar     Hive 3.1 flink-table-store-hive-connector-0.3.0_3.1.jar   Hive 2.3 flink-table-store-hive-connector-0.3.0_2.3.jar   Hive 2.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Hive" />
+<meta property="og:description" content="Hive #  This documentation is a guide for using Table Store in Hive.
+Version #  Table Store currently supports Hive 2.1, 2.2, 2.3 and 3.1.
+Execution Engine #  Table Store currently supports MR and Tez execution engine for Hive.
+Installation #  Download the jar file with corresponding version.
+    Jar     Hive 3.1 flink-table-store-hive-connector-0.3.0_3.1.jar   Hive 2.3 flink-table-store-hive-connector-0.3.0_2.3.jar   Hive 2." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/" />
+
+<title>Hive | Apache Flink Table Store</title>
+<link rel="manifest" href="/flink/flink-table-store-docs-release-0.3/manifest.json">
+<link rel="icon" href="/flink/flink-table-store-docs-release-0.3/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/flink/flink-table-store-docs-release-0.3/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/flink/flink-table-store-docs-release-0.3/en.search.min.bd2fd37bc7f836c4face92be4fc4fa0e40609bd9198352bf46bbd3a7436e380c.js" integrity="sha256-vS/Te8f4NsT6zpK&#43;T8T6DkBgm9kZg1K/RrvTp0NuOAw="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/font-awesome/css/font-awesome.min.css">
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/anchor.min.js"></script>
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+    <img width="70%" src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/navbar-brand-logo.jpg">
+</a>
+<p style="text-align:right">v0.3.0</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-6c07f7e07850a28420f21d62041fba0d" class="toggle"  />
+    <label for="section-6c07f7e07850a28420f21d62041fba0d" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/" class="">LSM Trees</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/" class="">Consistency Guarantees</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="toggle" checked />
+    <label for="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/" class=" active">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f2a11ba4196b33034e80bb68b108033e" class="toggle"  />
+    <label for="section-f2a11ba4196b33034e80bb68b108033e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-9158e11b187116611eb1a3ed1d21db1e" class="toggle"  />
+    <label for="section-9158e11b187116611eb1a3ed1d21db1e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-df6d1d7f40d2e224a80f115a5b7830c6" class="toggle"  />
+    <label for="section-df6d1d7f40d2e224a80f115a5b7830c6" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-star title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Features</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/" class="">Table Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="toggle"  />
+    <label for="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//flink.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+      0.3 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.2">
+          v0.2
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Hive</strong>
+
+  <label for="toc-control">
+    
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#version">Version</a></li>
+    <li><a href="#execution-engine">Execution Engine</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#quick-start-with-table-store-hive-catalog">Quick Start with Table Store Hive Catalog</a></li>
+    <li><a href="#quick-start-with-external-table">Quick Start with External Table</a></li>
+    <li><a href="#hive-type-conversion">Hive Type Conversion</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="hive">
+  Hive
+  <a class="anchor" href="#hive">#</a>
+</h1>
+<p>This documentation is a guide for using Table Store in Hive.</p>
+<h2 id="version">
+  Version
+  <a class="anchor" href="#version">#</a>
+</h2>
+<p>Table Store currently supports Hive 2.1, 2.2, 2.3 and 3.1.</p>
+<h2 id="execution-engine">
+  Execution Engine
+  <a class="anchor" href="#execution-engine">#</a>
+</h2>
+<p>Table Store currently supports MR and Tez execution engine for Hive.</p>
+<h2 id="installation">
+  Installation
+  <a class="anchor" href="#installation">#</a>
+</h2>
+<p>Download the jar file with corresponding version.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Jar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive 3.1</td>
+<td><a href="https://www.apache.org/dyn/closer.lua/flink/flink-table-store-0.3.0/flink-table-store-hive-connector-0.3.0_3.1.jar">flink-table-store-hive-connector-0.3.0_3.1.jar</a></td>
+</tr>
+<tr>
+<td>Hive 2.3</td>
+<td><a href="https://www.apache.org/dyn/closer.lua/flink/flink-table-store-0.3.0/flink-table-store-hive-connector-0.3.0_2.3.jar">flink-table-store-hive-connector-0.3.0_2.3.jar</a></td>
+</tr>
+<tr>
+<td>Hive 2.2</td>
+<td><a href="https://www.apache.org/dyn/closer.lua/flink/flink-table-store-0.3.0/flink-table-store-hive-connector-0.3.0_2.2.jar">flink-table-store-hive-connector-0.3.0_2.2.jar</a></td>
+</tr>
+<tr>
+<td>Hive 2.1</td>
+<td><a href="https://www.apache.org/dyn/closer.lua/flink/flink-table-store-0.3.0/flink-table-store-hive-connector-0.3.0_2.1.jar">flink-table-store-hive-connector-0.3.0_2.1.jar</a></td>
+</tr>
+</tbody>
+</table>
+<p>You can also manually build bundled jar from the source code.</p>
+
+
+<p>To build from source code, either <a href="https://flink.apache.org/downloads.html">download the source of a release</a> or <a href="https://github.com/apache/flink-table-store.git">clone the git repository</a>.</p>
+<p>Build bundled jar with the following command.</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hive 3.1</td>
+<td><code>mvn clean install -Dmaven.test.skip=true -Phive-3.1</code></td>
+</tr>
+<tr>
+<td>Hive 2.3</td>
+<td><code>mvn clean install -Dmaven.test.skip=true</code></td>
+</tr>
+<tr>
+<td>Hive 2.2</td>
+<td><code>mvn clean install -Dmaven.test.skip=true -Phive-2.2</code></td>
+</tr>
+<tr>
+<td>Hive 2.1</td>
+<td><code>mvn clean install -Dmaven.test.skip=true -Phive-2.1</code></td>
+</tr>
+<tr>
+<td>Hive 2.1 CDH 6.3</td>
+<td><code>mvn clean install -Dmaven.test.skip=true -Phive-2.1-cdh-6.3</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can find Hive connector jar in <code>./flink-table-store-hive/flink-table-store-hive-connector/target/flink-table-store-hive-connector-0.3.0.jar</code>.</p>
+<p>There are several ways to add this jar to Hive.</p>
+<ul>
+<li>You can create an <code>auxlib</code> folder under the root directory of Hive, and copy <code>flink-table-store-hive-connector-0.3.0.jar</code> into <code>auxlib</code>.</li>
+<li>You can also copy this jar to a path accessible by Hive, then use <code>add jar /path/to/flink-table-store-hive-connector-0.3.0.jar</code> to enable table store support in Hive. Note that this method is not recommended. If you&rsquo;re using the MR execution engine and running a join statement, you may be faced with the exception <code>org.apache.hive.com.esotericsoftware.kryo.kryoexception: unable to find class</code>.</li>
+</ul>
+<p>NOTE: If you are using HDFS, make sure that the environment variable <code>HADOOP_HOME</code> or <code>HADOOP_CONF_DIR</code> is set.</p>
+<h2 id="quick-start-with-table-store-hive-catalog">
+  Quick Start with Table Store Hive Catalog
+  <a class="anchor" href="#quick-start-with-table-store-hive-catalog">#</a>
+</h2>
+<p>By using table store Hive catalog, you can create, drop and insert into table store tables from Flink. These operations directly affect the corresponding Hive metastore. Tables created in this way can also be accessed directly from Hive.</p>
+<p><strong>Step 1: Prepare Table Store Hive Catalog Jar File for Flink</strong></p>
+<p>See <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/#creating-a-catalog-with-hive-metastore">creating a catalog with Hive metastore</a>.</p>
+<p><strong>Step 2: Create Test Data with Flink SQL</strong></p>
+<p>Execute the following Flink SQL script in Flink SQL client to define a Table Store Hive catalog and create a table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Flink SQL CLI
+</span><span class="c1">-- Define table store Hive catalog
+</span><span class="c1"></span>
+<span class="k">CREATE</span> <span class="k">CATALOG</span> <span class="n">my_hive</span> <span class="k">WITH</span> <span class="p">(</span>
+  <span class="s1">&#39;type&#39;</span> <span class="o">=</span> <span class="s1">&#39;table-store&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;metastore&#39;</span> <span class="o">=</span> <span class="s1">&#39;hive&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;uri&#39;</span> <span class="o">=</span> <span class="s1">&#39;thrift://&lt;hive-metastore-host-name&gt;:&lt;port&gt;&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;warehouse&#39;</span> <span class="o">=</span> <span class="s1">&#39;/path/to/table/store/warehouse&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">-- Use table store Hive catalog
+</span><span class="c1"></span>
+<span class="n">USE</span> <span class="k">CATALOG</span> <span class="n">my_hive</span><span class="p">;</span>
+
+<span class="c1">-- Create a table in table store Hive catalog (use &#34;default&#34; database by default)
+</span><span class="c1"></span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">test_table</span> <span class="p">(</span>
+  <span class="n">a</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">b</span> <span class="n">string</span>
+<span class="p">);</span>
+
+<span class="c1">-- Insert records into test table
+</span><span class="c1"></span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">test_table</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Table&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Store&#39;</span><span class="p">);</span>
+
+<span class="c1">-- Read records from test table
+</span><span class="c1"></span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">test_table</span><span class="p">;</span>
+
+<span class="cm">/*
+</span><span class="cm">+---+-------+
+</span><span class="cm">| a |     b |
+</span><span class="cm">+---+-------+
+</span><span class="cm">| 1 | Table |
+</span><span class="cm">| 2 | Store |
+</span><span class="cm">+---+-------+
+</span><span class="cm">*/</span>
+</code></pre></div><p><strong>Step 3: Query the Table in Hive</strong></p>
+<p>Run the following Hive SQL in Hive CLI to access the created table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Assume that flink-table-store-hive-connector-0.3.0.jar is already in auxlib directory.
+</span><span class="c1">-- List tables in Hive
+</span><span class="c1">-- (you might need to switch to &#34;default&#34; database if you&#39;re not there by default)
+</span><span class="c1"></span>
+<span class="k">SHOW</span> <span class="n">TABLES</span><span class="p">;</span>
+
+<span class="cm">/*
+</span><span class="cm">OK
+</span><span class="cm">test_table
+</span><span class="cm">*/</span>
+
+<span class="c1">-- Read records from test_table
+</span><span class="c1"></span>
+<span class="k">SELECT</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="k">FROM</span> <span class="n">test_table</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">a</span><span class="p">;</span>
+
+<span class="cm">/*
+</span><span class="cm">OK
+</span><span class="cm">1	Table
+</span><span class="cm">2	Store
+</span><span class="cm">*/</span>
+</code></pre></div><h2 id="quick-start-with-external-table">
+  Quick Start with External Table
+  <a class="anchor" href="#quick-start-with-external-table">#</a>
+</h2>
+<p>To access existing table store table, you can also register them as external tables in Hive. Run the following Hive SQL in Hive CLI.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Assume that flink-table-store-hive-connector-0.3.0.jar is already in auxlib directory.
+</span><span class="c1">-- Let&#39;s use the test_table created in the above section.
+</span><span class="c1">-- To create an external table, you don&#39;t need to specify any column or table properties.
+</span><span class="c1">-- Pointing the location to the path of table is enough.
+</span><span class="c1"></span>
+<span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">external_test_table</span>
+<span class="n">STORED</span> <span class="k">BY</span> <span class="s1">&#39;org.apache.flink.table.store.hive.TableStoreHiveStorageHandler&#39;</span>
+<span class="k">LOCATION</span> <span class="s1">&#39;/path/to/table/store/warehouse/default.db/test_table&#39;</span><span class="p">;</span>
+
+<span class="c1">-- Read records from external_test_table
+</span><span class="c1"></span>
+<span class="k">SELECT</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="k">FROM</span> <span class="n">test_table</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">a</span><span class="p">;</span>
+
+<span class="cm">/*
+</span><span class="cm">OK
+</span><span class="cm">1	Table
+</span><span class="cm">2	Store
+</span><span class="cm">*/</span>
+</code></pre></div><h2 id="hive-type-conversion">
+  Hive Type Conversion
+  <a class="anchor" href="#hive-type-conversion">#</a>
+</h2>
+<p>This section lists all supported type conversion between Hive and Flink.
+All Hive&rsquo;s data types are available in package <code>org.apache.hadoop.hive.serde2.typeinfo</code>.</p>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+      <th class="text-left" style="width: 10%">Hive Data Type</th>
+      <th class="text-left" style="width: 10%">Flink Data Type</th>
+      <th class="text-left" style="width: 5%">Atomic Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code>StructTypeInfo</code></td>
+      <td><code>RowType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>MapTypeInfo</code></td>
+      <td><code>MapType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>ListTypeInfo</code></td>
+      <td><code>ArrayType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("boolean")</code></td>
+      <td><code>BooleanType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("tinyint")</code></td>
+      <td><code>TinyIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("smallint")</code></td>
+      <td><code>SmallIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("int")</code></td>
+      <td><code>IntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("bigint")</code></td>
+      <td><code>BigIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("float")</code></td>
+      <td><code>FloatType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("double")</code></td>
+      <td><code>DoubleType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>BaseCharTypeInfo("char(%d)")</code></td>
+      <td><code>CharType(length)</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("string")</code></td>
+      <td><code>VarCharType(VarCharType.MAX_LENGTH)</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>BaseCharTypeInfo("varchar(%d)")</code></td>
+      <td><code>VarCharType(length), length is less than VarCharType.MAX_LENGTH</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>PrimitiveTypeInfo("date")</code></td>
+      <td><code>DateType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>TimestampType</code></td>
+      <td><code>TimestampType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>DecimalTypeInfo("decimal(%d, %d)")</code></td>
+      <td><code>DecimalType(precision, scale)</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>DecimalTypeInfo("binary")</code></td>
+      <td><code>VarBinaryType</code>, <code>BinaryType</code></td>
+      <td>true</td>
+    </tr>
+    </tbody>
+</table>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/flink-table-store/edit/release-0.3/docs/content/docs/engines/hive.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#version">Version</a></li>
+    <li><a href="#execution-engine">Execution Engine</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#quick-start-with-table-store-hive-catalog">Quick Start with Table Store Hive Catalog</a></li>
+    <li><a href="#quick-start-with-external-table">Quick Start with External Table</a></li>
+    <li><a href="#hive-type-conversion">Hive Type Conversion</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

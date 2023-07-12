@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engines on Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/</link>
+    <description>Recent content in Engines on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/</guid>
+      <description>Overview #  Table Store not only supports Flink SQL writes and queries natively, but also provides queries from other popular engines, such as Apache Spark and Apache Hive.
+Compatibility Matrix #     Engine Version Feature Read Pushdown     Flink 1.16/1.15/1.14 batch/streaming read, batch/streaming write, create/drop table, create/drop database Projection, Filter   Hive 3.1/2.3/2.2/2.1/2.1 CDH 6.3 batch read Projection, Filter   Spark 3.</description>
+    </item>
+    
+    <item>
+      <title>Flink</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/</guid>
+      <description>Flink #  This documentation is a guide for using Table Store in Flink.
+Preparing Table Store Jar File #  Table Store currently supports Flink 1.16, 1.15 and 1.14. We recommend the latest Flink version for a better experience.
+Download the jar file with corresponding version.
+   Version Jar     Flink 1.16 flink-table-store-dist-0.3.0.jar   Flink 1.15 flink-table-store-dist-0.3.0_1.15.jar   Flink 1.14 flink-table-store-dist-0.3.0_1.14.jar    You can also manually build bundled jar from the source code.</description>
+    </item>
+    
+    <item>
+      <title>Spark3</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/</guid>
+      <description>Spark3 #  This documentation is a guide for using Table Store in Spark3.
+Preparing Table Store Jar File #  Download flink-table-store-spark-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.
+Build bundled jar with the following command.
+mvn clean install -DskipTests You can find the bundled jar in ./flink-table-store-spark/target/flink-table-store-spark-0.3.0.jar.</description>
+    </item>
+    
+    <item>
+      <title>Spark2</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/</guid>
+      <description>Spark2 #  This documentation is a guide for using Table Store in Spark2.
+Version #  Table Store supports Spark 2.4+. It is highly recommended to use Spark 2.4+ version with many improvements.
+Preparing Table Store Jar File #  Download flink-table-store-spark2-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.</description>
+    </item>
+    
+    <item>
+      <title>Hive</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/</guid>
+      <description>Hive #  This documentation is a guide for using Table Store in Hive.
+Version #  Table Store currently supports Hive 2.1, 2.2, 2.3 and 3.1.
+Execution Engine #  Table Store currently supports MR and Tez execution engine for Hive.
+Installation #  Download the jar file with corresponding version.
+    Jar     Hive 3.1 flink-table-store-hive-connector-0.3.0_3.1.jar   Hive 2.3 flink-table-store-hive-connector-0.3.0_2.3.jar   Hive 2.</description>
+    </item>
+    
+    <item>
+      <title>Trino</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/</guid>
+      <description>Trino #  Because Trino&amp;rsquo;s dependency is JDK 11, it is not possible to include the trino connector in flink-table-store.
+See flink-table-store-trino.</description>
+    </item>
+    
+  </channel>
+</rss>

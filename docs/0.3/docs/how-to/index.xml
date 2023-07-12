@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How to on Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/</link>
+    <description>Recent content in How to on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating Catalogs</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/</guid>
+      <description>Creating Catalogs #  Table Store catalogs currently support two types of metastores:
+ filesystem metastore (default), which stores both metadata and table files in filesystems. hive metastore, which additionally stores metadata in Hive metastore. Users can directly access the tables from Hive.  See CatalogOptions for detailed options when creating a catalog.
+Creating a Catalog with Filesystem Metastore #  Flink The following Flink SQL registers and uses a Table Store catalog named my_catalog.</description>
+    </item>
+    
+    <item>
+      <title>Creating Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/</guid>
+      <description>Creating Tables #  Creating Catalog Managed Tables #  Tables created in Table Store catalogs are managed by the catalog. When the table is dropped from catalog, its table files will also be deleted.
+The following SQL assumes that you have registered and are using a Table Store catalog. It creates a managed table named MyTable with five columns in the catalog&amp;rsquo;s default database, where dt, hh and user_id are the primary keys.</description>
+    </item>
+    
+    <item>
+      <title>Altering Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/</guid>
+      <description>Altering Tables #  Changing/Adding Table Properties #  The following SQL sets write-buffer-size table property to 256 MB.
+Flink ALTER TABLE my_table SET ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; ); Spark3 ALTER TABLE my_table SET TBLPROPERTIES ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; );  Rename Table Name #  The following SQL rename the table name to new name.
+Flink ALTER TABLE my_table RENAME TO my_table_new; Spark3 ALTER TABLE my_table RENAME TO my_table_new;  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure.</description>
+    </item>
+    
+    <item>
+      <title>Writing Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/</guid>
+      <description>Writing Tables #  You can use the INSERT statement to inserts new rows into a table or overwrites the existing data in the table. The inserted rows can be specified by value expressions or result from a query.
+Syntax #  INSERT { INTO | OVERWRITE } table_identifier [ part_spec ] [ column_list ] { value_expr | query }   part_spec
+An optional parameter that specifies a comma-separated list of key and value pairs for partitions.</description>
+    </item>
+    
+    <item>
+      <title>Querying Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/</guid>
+      <description>Querying Tables #  Just like all other tables, Table Store tables can be queried with SELECT statement.
+Scan Mode #  By specifying the scan.mode table property, users can specify where and how Table Store sources should produce records.
+  Scan Mode Batch Source Behavior Streaming Source Behavior     default The default scan mode. Determines actual scan mode according to other table properties. If &#34;scan.timestamp-millis&#34; is set the actual scan mode will be &#34;</description>
+    </item>
+    
+  </channel>
+</rss>

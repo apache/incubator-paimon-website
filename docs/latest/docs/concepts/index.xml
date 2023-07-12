@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Concepts on Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/</link>
+    <description>Recent content in Concepts on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/</guid>
+      <description>Overview #  Flink Table Store is a unified storage to build dynamic tables for both streaming and batch processing in Flink, supporting high-speed data ingestion and timely data query.
+Architecture #  As shown in the architecture above:
+Read/Write: Table Store supports a versatile way to read/write data and perform OLAP queries.
+ For reads, it supports consuming data  from historical snapshots (in batch mode), from the latest offset (in streaming mode), or reading incremental snapshots in a hybrid way.</description>
+    </item>
+    
+    <item>
+      <title>Basic Concepts</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/</guid>
+      <description>Basic Concepts #  Snapshot #  A snapshot captures the state of a table at some point in time. Users can access the latest data of a table through the latest snapshot. By time traveling, users can also access the previous state of a table through an earlier snapshot.
+Partition #  Table Store adopts the same partitioning concept as Apache Hive to separate data.
+Partitioning is an optional way of dividing a table into related parts based on the values of particular columns like date, city, and department.</description>
+    </item>
+    
+    <item>
+      <title>File Layouts</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/</guid>
+      <description>File Layouts #  All files of a table are stored under one base directory. Table Store files are organized in a layered style. The following image illustrates the file layout. Starting from a snapshot file, Table Store readers can recursively access all records from the table.
+Snapshot Files #  All snapshot files are stored in the snapshot directory.
+A snapshot file is a JSON file containing information about this snapshot, including</description>
+    </item>
+    
+    <item>
+      <title>LSM Trees</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/</guid>
+      <description>LSM Trees #  Table Store adapts the LSM tree (log-structured merge-tree) as the data structure for file storage. This documentation breifly introduces the concepts about LSM trees.
+Sorted Runs #  LSM tree organizes files into several sorted runs. A sorted run consists of one or multiple data files and each data file belongs to exactly one sorted run.
+Records within a data file are sorted by their primary keys.</description>
+    </item>
+    
+    <item>
+      <title>Consistency Guarantees</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/</guid>
+      <description>Consistency Guarantees #  Table Store writers uses two-phase commit protocol to atomically commit a batch of records to the table. Each commit produces at most two snapshots at commit time.
+For any two writers modifying a table at the same time, as long as they do not modify the same bucket, their commits are serializable. If they modify the same bucket, only snapshot isolation is guaranteed. That is, the final table state may be a mix of the two commits, but no changes are lost.</description>
+    </item>
+    
+  </channel>
+</rss>

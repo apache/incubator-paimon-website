@@ -1,0 +1,1225 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Configuration #  CoreOptions #  Core options for table store.
+  Key Default Type Description     auto-create false Boolean Whether to create underlying storage when reading and writing the table.   bucket 1 Integer Bucket number for file store.   bucket-key (none) String Specify the table store distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.
+If you specify multiple fields, delimiter is &#39;,&#39;.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Configurations" />
+<meta property="og:description" content="Configuration #  CoreOptions #  Core options for table store.
+  Key Default Type Description     auto-create false Boolean Whether to create underlying storage when reading and writing the table.   bucket 1 Integer Bucket number for file store.   bucket-key (none) String Specify the table store distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.
+If you specify multiple fields, delimiter is &#39;,&#39;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/" />
+
+<title>Configurations | Apache Flink Table Store</title>
+<link rel="manifest" href="/flink/flink-table-store-docs-release-0.3/manifest.json">
+<link rel="icon" href="/flink/flink-table-store-docs-release-0.3/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/flink/flink-table-store-docs-release-0.3/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/flink/flink-table-store-docs-release-0.3/en.search.min.bd2fd37bc7f836c4face92be4fc4fa0e40609bd9198352bf46bbd3a7436e380c.js" integrity="sha256-vS/Te8f4NsT6zpK&#43;T8T6DkBgm9kZg1K/RrvTp0NuOAw="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/font-awesome/css/font-awesome.min.css">
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/anchor.min.js"></script>
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+    <img width="70%" src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/navbar-brand-logo.jpg">
+</a>
+<p style="text-align:right">v0.3.0</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-6c07f7e07850a28420f21d62041fba0d" class="toggle"  />
+    <label for="section-6c07f7e07850a28420f21d62041fba0d" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/" class="">LSM Trees</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/" class="">Consistency Guarantees</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="toggle"  />
+    <label for="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f2a11ba4196b33034e80bb68b108033e" class="toggle"  />
+    <label for="section-f2a11ba4196b33034e80bb68b108033e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-9158e11b187116611eb1a3ed1d21db1e" class="toggle"  />
+    <label for="section-9158e11b187116611eb1a3ed1d21db1e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-df6d1d7f40d2e224a80f115a5b7830c6" class="toggle"  />
+    <label for="section-df6d1d7f40d2e224a80f115a5b7830c6" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-star title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Features</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/" class="">Table Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="toggle" checked />
+    <label for="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/" class=" active">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//flink.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+      0.3 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.2">
+          v0.2
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Configurations</strong>
+
+  <label for="toc-control">
+    
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#coreoptions">CoreOptions</a></li>
+        <li><a href="#catalogoptions">CatalogOptions</a></li>
+        <li><a href="#flinkconnectoroptions">FlinkConnectorOptions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="configuration">
+  Configuration
+  <a class="anchor" href="#configuration">#</a>
+</h1>
+<h3 id="coreoptions">
+  CoreOptions
+  <a class="anchor" href="#coreoptions">#</a>
+</h3>
+<p>Core options for table store.</p>
+<table class="configuration table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 10%">Type</th>
+            <th class="text-left" style="width: 55%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>auto-create</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Whether to create underlying storage when reading and writing the table.</td>
+        </tr>
+        <tr>
+            <td><h5>bucket</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>Integer</td>
+            <td>Bucket number for file store.</td>
+        </tr>
+        <tr>
+            <td><h5>bucket-key</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>Specify the table store distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.<br />If you specify multiple fields, delimiter is ','.<br />If not specified, the primary key will be used; if there is no primary key, the full row will be used.</td>
+        </tr>
+        <tr>
+            <td><h5>changelog-producer</h5></td>
+            <td style="word-wrap: break-word;">none</td>
+            <td><p>Enum</p></td>
+            <td>Whether to double write to a changelog file. This changelog file keeps the details of data changes, it can be read directly during stream reads.<br /><br />Possible values:<ul><li>"none": No changelog file.</li><li>"input": Double write to a changelog file when flushing memory table, the changelog is from input.</li><li>"full-compaction": Generate changelog files with each full compaction.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>changelog-producer.compaction-interval</h5></td>
+            <td style="word-wrap: break-word;">30 min</td>
+            <td>Duration</td>
+            <td>When changelog-producer is set to FULL_COMPACTION, full compaction will be constantly triggered after this interval.</td>
+        </tr>
+        <tr>
+            <td><h5>commit.force-compact</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Whether to force a compaction before commit.</td>
+        </tr>
+        <tr>
+            <td><h5>compaction.early-max.file-num</h5></td>
+            <td style="word-wrap: break-word;">50</td>
+            <td>Integer</td>
+            <td>For file set [f_0,...,f_N], the maximum file number to trigger a compaction for append-only table, even if sum(size(f_i)) &lt; targetFileSize. This value avoids pending too much small files, which slows down the performance.</td>
+        </tr>
+        <tr>
+            <td><h5>compaction.max-size-amplification-percent</h5></td>
+            <td style="word-wrap: break-word;">200</td>
+            <td>Integer</td>
+            <td>The size amplification is defined as the amount (in percentage) of additional storage needed to store a single byte of data in the merge tree for changelog mode table.</td>
+        </tr>
+        <tr>
+            <td><h5>compaction.max-sorted-run-num</h5></td>
+            <td style="word-wrap: break-word;">2147483647</td>
+            <td>Integer</td>
+            <td>The maximum sorted run number to pick for compaction. This value avoids merging too much sorted runs at the same time during compaction, which may lead to OutOfMemoryError.</td>
+        </tr>
+        <tr>
+            <td><h5>compaction.min.file-num</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td>Integer</td>
+            <td>For file set [f_0,...,f_N], the minimum file number which satisfies sum(size(f_i)) &gt;= targetFileSize to trigger a compaction for append-only table. This value avoids almost-full-file to be compacted, which is not cost-effective.</td>
+        </tr>
+        <tr>
+            <td><h5>compaction.size-ratio</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>Integer</td>
+            <td>Percentage flexibility while comparing sorted run size for changelog mode table. If the candidate sorted run(s) size is 1% smaller than the next sorted run's size, then include next sorted run into this candidate set.</td>
+        </tr>
+        <tr>
+            <td><h5>continuous.discovery-interval</h5></td>
+            <td style="word-wrap: break-word;">1 s</td>
+            <td>Duration</td>
+            <td>The discovery interval of continuous reading.</td>
+        </tr>
+        <tr>
+            <td><h5>file.format</h5></td>
+            <td style="word-wrap: break-word;">"orc"</td>
+            <td>String</td>
+            <td>Specify the message format of data files.</td>
+        </tr>
+        <tr>
+            <td><h5>local-sort.max-num-file-handles</h5></td>
+            <td style="word-wrap: break-word;">128</td>
+            <td>Integer</td>
+            <td>The maximal fan-in for external merge sort. It limits the number of file handles. If it is too small, may cause intermediate merging. But if it is too large, it will cause too many files opened at the same time, consume memory and lead to random reading.</td>
+        </tr>
+        <tr>
+            <td><h5>log.changelog-mode</h5></td>
+            <td style="word-wrap: break-word;">auto</td>
+            <td><p>Enum</p></td>
+            <td>Specify the log changelog mode for table.<br /><br />Possible values:<ul><li>"auto": Upsert for table with primary key, all for table without primary key.</li><li>"all": The log system stores all changes including UPDATE_BEFORE.</li><li>"upsert": The log system does not store the UPDATE_BEFORE changes, the log consumed job will automatically add the normalized node, relying on the state to generate the required update_before.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>log.consistency</h5></td>
+            <td style="word-wrap: break-word;">transactional</td>
+            <td><p>Enum</p></td>
+            <td>Specify the log consistency mode for table.<br /><br />Possible values:<ul><li>"transactional": Only the data after the checkpoint can be seen by readers, the latency depends on checkpoint interval.</li><li>"eventual": Immediate data visibility, you may see some intermediate states, but eventually the right results will be produced, only works for table with primary key.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>log.format</h5></td>
+            <td style="word-wrap: break-word;">"debezium-json"</td>
+            <td>String</td>
+            <td>Specify the message format of log system.</td>
+        </tr>
+        <tr>
+            <td><h5>log.key.format</h5></td>
+            <td style="word-wrap: break-word;">"json"</td>
+            <td>String</td>
+            <td>Specify the key message format of log system with primary key.</td>
+        </tr>
+        <tr>
+            <td><h5>log.retention</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Duration</td>
+            <td>It means how long changes log will be kept. The default value is from the log system cluster.</td>
+        </tr>
+        <tr>
+            <td><h5>log.scan.remove-normalize</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Whether to force the removal of the normalize node when streaming read. Note: This is dangerous and is likely to cause data errors if downstream is used to calculate aggregation and the input is not complete changelog.</td>
+        </tr>
+        <tr>
+            <td><h5>manifest.format</h5></td>
+            <td style="word-wrap: break-word;">"avro"</td>
+            <td>String</td>
+            <td>Specify the message format of manifest files.</td>
+        </tr>
+        <tr>
+            <td><h5>manifest.merge-min-count</h5></td>
+            <td style="word-wrap: break-word;">30</td>
+            <td>Integer</td>
+            <td>To avoid frequent manifest merges, this parameter specifies the minimum number of ManifestFileMeta to merge.</td>
+        </tr>
+        <tr>
+            <td><h5>manifest.target-file-size</h5></td>
+            <td style="word-wrap: break-word;">8 mb</td>
+            <td>MemorySize</td>
+            <td>Suggested file size of a manifest file.</td>
+        </tr>
+        <tr>
+            <td><h5>merge-engine</h5></td>
+            <td style="word-wrap: break-word;">deduplicate</td>
+            <td><p>Enum</p></td>
+            <td>Specify the merge engine for table with primary key.<br /><br />Possible values:<ul><li>"deduplicate": De-duplicate and keep the last row.</li><li>"partial-update": Partial update non-null fields.</li><li>"aggregation": Aggregate fields with same primary key.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>num-levels</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Integer</td>
+            <td>Total level number, for example, there are 3 levels, including 0,1,2 levels.</td>
+        </tr>
+        <tr>
+            <td><h5>num-sorted-run.compaction-trigger</h5></td>
+            <td style="word-wrap: break-word;">5</td>
+            <td>Integer</td>
+            <td>The sorted run number to trigger compaction. Includes level0 files (one file one sorted run) and high-level runs (one level one sorted run).</td>
+        </tr>
+        <tr>
+            <td><h5>num-sorted-run.stop-trigger</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Integer</td>
+            <td>The number of sorted runs that trigger the stopping of writes, the default value is 'num-sorted-run.compaction-trigger' + 1.</td>
+        </tr>
+        <tr>
+            <td><h5>page-size</h5></td>
+            <td style="word-wrap: break-word;">64 kb</td>
+            <td>MemorySize</td>
+            <td>Memory page size.</td>
+        </tr>
+        <tr>
+            <td><h5>partial-update.ignore-delete</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Whether to ignore delete records in partial-update mode.</td>
+        </tr>
+        <tr>
+            <td><h5>partition.default-name</h5></td>
+            <td style="word-wrap: break-word;">"__DEFAULT_PARTITION__"</td>
+            <td>String</td>
+            <td>The default partition name in case the dynamic partition column value is null/empty string.</td>
+        </tr>
+        <tr>
+            <td><h5>partition.expiration-check-interval</h5></td>
+            <td style="word-wrap: break-word;">1 h</td>
+            <td>Duration</td>
+            <td>The check interval of partition expiration.</td>
+        </tr>
+        <tr>
+            <td><h5>partition.expiration-time</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Duration</td>
+            <td>The expiration interval of a partition. A partition will be expired if it‘s lifetime is over this value. Partition time is extracted from the partition value.</td>
+        </tr>
+        <tr>
+            <td><h5>partition.timestamp-formatter</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>The formatter to format timestamp from string. It can be used with 'partition.timestamp-pattern' to create a formatter using the specified value.<ul><li>Default formatter is 'yyyy-MM-dd HH:mm:ss' and 'yyyy-MM-dd'.</li><li>Supports multiple partition fields like '$year-$month-$day $hour:00:00'.</li><li>The timestamp-formatter is compatible with Java's DateTimeFormatter.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>partition.timestamp-pattern</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>You can specify a pattern to get a timestamp from partitions. The formatter pattern is defined by 'partition.timestamp-formatter'.<ul><li>By default, read from the first field.</li><li>If the timestamp in the partition is a single field called 'dt', you can use '$dt'.</li><li>If it is spread across multiple fields for year, month, day, and hour, you can use '$year-$month-$day $hour:00:00'.</li><li>If the timestamp is in fields dt and hour, you can use '$dt $hour:00:00'.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>scan.mode</h5></td>
+            <td style="word-wrap: break-word;">default</td>
+            <td><p>Enum</p></td>
+            <td>Specify the scanning behavior of the source.<br /><br />Possible values:<ul><li>"default": Determines actual startup mode according to other table properties. If "scan.timestamp-millis" is set the actual startup mode will be "from-timestamp", and if "scan.snapshot-id" is set the actual startup mode will be "from-snapshot". Otherwise the actual startup mode will be "latest-full".</li><li>"latest-full": For streaming sources, produces the latest snapshot on the table upon first startup, and continue to read the latest changes. For batch sources, just produce the latest snapshot but does not read new changes.</li><li>"full": Deprecated. Same as "latest-full".</li><li>"latest": For streaming sources, continuously reads latest changes without producing a snapshot at the beginning. For batch sources, behaves the same as the "latest-full" startup mode.</li><li>"compacted-full": For streaming sources, produces a snapshot after the latest compaction on the table upon first startup, and continue to read the latest changes. For batch sources, just produce a snapshot after the latest compaction but does not read new changes.</li><li>"from-timestamp": For streaming sources, continuously reads changes starting from timestamp specified by "scan.timestamp-millis", without producing a snapshot at the beginning. For batch sources, produces a snapshot at timestamp specified by "scan.timestamp-millis" but does not read new changes.</li><li>"from-snapshot": For streaming sources, continuously reads changes starting from snapshot specified by "scan.snapshot-id", without producing a snapshot at the beginning. For batch sources, produces a snapshot specified by "scan.snapshot-id" but does not read new changes.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>scan.plan-sort-partition</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Whether to sort plan files by partition fields, this allows you to read according to the partition order, even if your partition writes are out of order.<br />It is recommended that you use this for streaming read of the 'append-only' table. By default, streaming read will read the full snapshot first. In order to avoid the disorder reading for partitions, you can open this option.</td>
+        </tr>
+        <tr>
+            <td><h5>scan.snapshot-id</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Long</td>
+            <td>Optional snapshot id used in case of "from-snapshot" scan mode</td>
+        </tr>
+        <tr>
+            <td><h5>scan.timestamp-millis</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Long</td>
+            <td>Optional timestamp used in case of "from-timestamp" scan mode.</td>
+        </tr>
+        <tr>
+            <td><h5>sequence.field</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>The field that generates the sequence number for primary key table, the sequence number determines which data is the most recent.</td>
+        </tr>
+        <tr>
+            <td><h5>snapshot.num-retained.max</h5></td>
+            <td style="word-wrap: break-word;">2147483647</td>
+            <td>Integer</td>
+            <td>The maximum number of completed snapshots to retain.</td>
+        </tr>
+        <tr>
+            <td><h5>snapshot.num-retained.min</h5></td>
+            <td style="word-wrap: break-word;">10</td>
+            <td>Integer</td>
+            <td>The minimum number of completed snapshots to retain.</td>
+        </tr>
+        <tr>
+            <td><h5>snapshot.time-retained</h5></td>
+            <td style="word-wrap: break-word;">1 h</td>
+            <td>Duration</td>
+            <td>The maximum time of completed snapshots to retain.</td>
+        </tr>
+        <tr>
+            <td><h5>source.split.open-file-cost</h5></td>
+            <td style="word-wrap: break-word;">4 mb</td>
+            <td>MemorySize</td>
+            <td>Open file cost of a source file. It is used to avoid reading too many files with a source split, which can be very slow.</td>
+        </tr>
+        <tr>
+            <td><h5>source.split.target-size</h5></td>
+            <td style="word-wrap: break-word;">128 mb</td>
+            <td>MemorySize</td>
+            <td>Target size of a source split when scanning a bucket.</td>
+        </tr>
+        <tr>
+            <td><h5>target-file-size</h5></td>
+            <td style="word-wrap: break-word;">128 mb</td>
+            <td>MemorySize</td>
+            <td>Target size of a file.</td>
+        </tr>
+        <tr>
+            <td><h5>write-buffer-size</h5></td>
+            <td style="word-wrap: break-word;">256 mb</td>
+            <td>MemorySize</td>
+            <td>Amount of data to build up in memory before converting to a sorted on-disk file.</td>
+        </tr>
+        <tr>
+            <td><h5>write-buffer-spillable</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Boolean</td>
+            <td>Whether the write buffer can be spillable. Enabled by default when using object storage.</td>
+        </tr>
+        <tr>
+            <td><h5>write-mode</h5></td>
+            <td style="word-wrap: break-word;">change-log</td>
+            <td><p>Enum</p></td>
+            <td>Specify the write mode for table.<br /><br />Possible values:<ul><li>"append-only": The table can only accept append-only insert operations. Neither data deduplication nor any primary key constraints will be done when inserting rows into table store.</li><li>"change-log": The table can accept insert/delete/update operations.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>write-only</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>If set to true, compactions and snapshot expiration will be skipped. This option is used along with dedicated compact jobs.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="catalogoptions">
+  CatalogOptions
+  <a class="anchor" href="#catalogoptions">#</a>
+</h3>
+<p>Options for table store catalog.</p>
+<table class="configuration table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 10%">Type</th>
+            <th class="text-left" style="width: 55%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>lock-acquire-timeout</h5></td>
+            <td style="word-wrap: break-word;">8 min</td>
+            <td>Duration</td>
+            <td>The maximum time to wait for acquiring the lock.</td>
+        </tr>
+        <tr>
+            <td><h5>lock-check-max-sleep</h5></td>
+            <td style="word-wrap: break-word;">8 s</td>
+            <td>Duration</td>
+            <td>The maximum sleep time when retrying to check the lock.</td>
+        </tr>
+        <tr>
+            <td><h5>lock.enabled</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>Enable Catalog Lock.</td>
+        </tr>
+        <tr>
+            <td><h5>metastore</h5></td>
+            <td style="word-wrap: break-word;">"filesystem"</td>
+            <td>String</td>
+            <td>Metastore of table store catalog, supports filesystem and hive.</td>
+        </tr>
+        <tr>
+            <td><h5>table.type</h5></td>
+            <td style="word-wrap: break-word;">MANAGED_TABLE</td>
+            <td><p>Enum</p></td>
+            <td>Type of table.<br /><br />Possible values:<ul><li>"MANAGED_TABLE": Table Store owned table where the entire lifecycle of the table data is managed.</li><li>"EXTERNAL_TABLE": The table where Table Store has loose coupling with the data stored in external locations.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>uri</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>Uri of metastore server.</td>
+        </tr>
+        <tr>
+            <td><h5>warehouse</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>String</td>
+            <td>The warehouse root path of catalog.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="flinkconnectoroptions">
+  FlinkConnectorOptions
+  <a class="anchor" href="#flinkconnectoroptions">#</a>
+</h3>
+<p>Flink connector options for table store.</p>
+<table class="configuration table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 10%">Type</th>
+            <th class="text-left" style="width: 55%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>log.system</h5></td>
+            <td style="word-wrap: break-word;">"none"</td>
+            <td>String</td>
+            <td>The log system used to keep changes of the table.<br /><br />Possible values:<br /><ul><li>"none": No log system, the data is written only to file store, and the streaming read will be directly read from the file store.</li></ul><ul><li>"kafka": Kafka log system, the data is double written to file store and kafka, and the streaming read will be read from kafka.</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>scan.parallelism</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Integer</td>
+            <td>Define a custom parallelism for the scan source. By default, if this option is not defined, the planner will derive the parallelism for each statement individually by also considering the global configuration.</td>
+        </tr>
+        <tr>
+            <td><h5>sink.parallelism</h5></td>
+            <td style="word-wrap: break-word;">(none)</td>
+            <td>Integer</td>
+            <td>Defines a custom parallelism for the sink. By default, if this option is not defined, the planner will derive the parallelism for each statement individually by also considering the global configuration.</td>
+        </tr>
+    </tbody>
+</table>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/flink-table-store/edit/release-0.3/docs/content/docs/maintenance/configurations.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#coreoptions">CoreOptions</a></li>
+        <li><a href="#catalogoptions">CatalogOptions</a></li>
+        <li><a href="#flinkconnectoroptions">FlinkConnectorOptions</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

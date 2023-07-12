@@ -1,0 +1,1235 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Primary Key Table #  Changelog table is the default table type when creating a table. Users can insert, update or delete records in the table.
+Primary keys are a set of columns that are unique for each record. Paimon imposes an ordering of data, which means the system will sort the primary key within each bucket. Using this feature, users can achieve high performance by adding filter conditions on the primary key.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Primary Key Table" />
+<meta property="og:description" content="Primary Key Table #  Changelog table is the default table type when creating a table. Users can insert, update or delete records in the table.
+Primary keys are a set of columns that are unique for each record. Paimon imposes an ordering of data, which means the system will sort the primary key within each bucket. Using this feature, users can achieve high performance by adding filter conditions on the primary key." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//paimon.apache.org/docs/0.4/concepts/primary-key-table/" />
+
+<title>Primary Key Table | Apache Paimon</title>
+<link rel="manifest" href="/docs/0.4/manifest.json">
+<link rel="icon" href="/docs/0.4/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/docs/0.4/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/docs/0.4/en.search.min.82772eb61ecc44f360614f479f24141df8cb8040bb99fbc9def3c06c72388433.js" integrity="sha256-gncuth7MRPNgYU9HnyQUHfjLgEC7mfvJ3vPAbHI4hDM="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//paimon.apache.org/docs/0.4/font-awesome/css/font-awesome.min.css">
+<script src="//paimon.apache.org/docs/0.4/js/anchor.min.js"></script>
+<script src="//paimon.apache.org/docs/0.4/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//paimon.apache.org/docs/0.4">
+    <img width="100%" src="//paimon.apache.org/docs/0.4/paimon_black.svg">
+</a>
+<p style="text-align:right">0.4.0-incubating</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-dc8a1c63e6da60163016ce21cae1faa0" class="toggle" checked />
+    <label for="section-dc8a1c63e6da60163016ce21cae1faa0" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/file-operations/" class="">File Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/primary-key-table/" class=" active">Primary Key Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/append-only-table/" class="">Append Only Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-90f5541dc4fa46a212e954b9193ea0f9" class="toggle"  />
+    <label for="section-90f5541dc4fa46a212e954b9193ea0f9" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/presto/" class="">Presto</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-e2d76c106dab115385ef7f124cda2ba4" class="toggle"  />
+    <label for="section-e2d76c106dab115385ef7f124cda2ba4" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/hdfs/" class="">HDFS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f6ca435e98b926845c0060f9e7f85362" class="toggle"  />
+    <label for="section-f6ca435e98b926845c0060f9e7f85362" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/cdc-ingestion/" class="">CDC Ingestion</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-697a4b6a0388d6cfa4f418aba3b4edfe" class="toggle"  />
+    <label for="section-697a4b6a0388d6cfa4f418aba3b4edfe" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/read-performance/" class="">Read Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-1b3eda2e8317c0686a4d41cefa0a3453" class="toggle"  />
+    <label for="section-1b3eda2e8317c0686a4d41cefa0a3453" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-briefcase title maindish" aria-hidden="true"></i>&nbsp;&nbsp;API</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/api/java-api/" class="">Java API</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/api/flink-api/" class="">Flink API</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  	<br/>
+  
+  
+    <input type="checkbox" id="section-8c828bcf882f666cdd6821a70cc768ee" class="toggle"  />
+    <label for="section-8c828bcf882f666cdd6821a70cc768ee" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-sitemap title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Project</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/roadmap/" class="">Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/download/" class="">Download</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/contributing/" class="">Contributing</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//paimon.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//paimon.apache.org/docs/master/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//paimon.apache.org/docs/0.4">
+      0.4 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://paimon.apache.org/docs/master">
+          master
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+          stable
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+          0.3
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//paimon.apache.org/docs/0.4/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/docs/0.4/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Primary Key Table</strong>
+
+  <label for="toc-control">
+    
+    <img src="/docs/0.4/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#merge-engines">Merge Engines</a>
+      <ul>
+        <li><a href="#deduplicate">Deduplicate</a></li>
+        <li><a href="#partial-update">Partial Update</a></li>
+        <li><a href="#aggregation">Aggregation</a></li>
+      </ul>
+    </li>
+    <li><a href="#changelog-producers">Changelog Producers</a>
+      <ul>
+        <li><a href="#none">None</a></li>
+        <li><a href="#input">Input</a></li>
+        <li><a href="#lookup">Lookup</a></li>
+        <li><a href="#full-compaction">Full Compaction</a></li>
+      </ul>
+    </li>
+    <li><a href="#sequence-field">Sequence Field</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="primary-key-table">
+  Primary Key Table
+  <a class="anchor" href="#primary-key-table">#</a>
+</h1>
+<p>Changelog table is the default table type when creating a table. Users can insert, update or delete records in the table.</p>
+<p>Primary keys are a set of columns that are unique for each record. Paimon imposes an ordering of data, which means the system will sort the primary key within each bucket. Using this feature, users can achieve high performance by adding filter conditions on the primary key.</p>
+<p>By <a href="//paimon.apache.org/docs/0.4/how-to/creating-tables/#tables-with-primary-keys">defining primary keys</a> on a changelog table, users can access the following features.</p>
+<h2 id="merge-engines">
+  Merge Engines
+  <a class="anchor" href="#merge-engines">#</a>
+</h2>
+<p>When Paimon sink receives two or more records with the same primary keys, it will merge them into one record to keep primary keys unique. By specifying the <code>merge-engine</code> table property, users can choose how records are merged together.</p>
+<blockquote class="book-hint info">
+  Set <code>table.exec.sink.upsert-materialize</code> to <code>NONE</code> always in Flink SQL TableConfig, sink upsert-materialize may
+result in strange behavior. When the input is out of order, we recommend that you use
+<a href="//paimon.apache.org/docs/0.4/concepts/primary-key-table/#sequence-field">Sequence Field</a> to correct disorder.
+</blockquote>
+
+<h3 id="deduplicate">
+  Deduplicate
+  <a class="anchor" href="#deduplicate">#</a>
+</h3>
+<p><code>deduplicate</code> merge engine is the default merge engine. Paimon will only keep the latest record and throw away other records with the same primary keys.</p>
+<p>Specifically, if the latest record is a <code>DELETE</code> record, all records with the same primary keys will be deleted.</p>
+<h3 id="partial-update">
+  Partial Update
+  <a class="anchor" href="#partial-update">#</a>
+</h3>
+<p>By specifying <code>'merge-engine' = 'partial-update'</code>, users can set columns of a record across multiple updates and finally get a complete record. Specifically, value fields are updated to the latest data one by one under the same primary key, but null values are not overwritten.</p>
+<p>For example, let&rsquo;s say Paimon receives three records:</p>
+<ul>
+<li><code>&lt;1, 23.0, 10, NULL&gt;</code>-</li>
+<li><code>&lt;1, NULL, NULL, 'This is a book'&gt;</code></li>
+<li><code>&lt;1, 25.2, NULL, NULL&gt;</code></li>
+</ul>
+<p>If the first column is the primary key. The final result will be <code>&lt;1, 25.2, 10, 'This is a book'&gt;</code>.</p>
+<blockquote class="book-hint info">
+  For streaming queries, <code>partial-update</code> merge engine must be used together with <code>lookup</code> or <code>full-compaction</code> <a href="//paimon.apache.org/docs/0.4/concepts/primary-key-table/#changelog-producers">changelog producer</a>.
+</blockquote>
+
+<blockquote class="book-hint info">
+  Partial cannot receive <code>DELETE</code> messages because the behavior cannot be defined. You can configure <code>partial-update.ignore-delete</code> to ignore <code>DELETE</code> messages.
+</blockquote>
+
+<h3 id="aggregation">
+  Aggregation
+  <a class="anchor" href="#aggregation">#</a>
+</h3>
+<blockquote class="book-hint info">
+  NOTE: Set <code>table.exec.sink.upsert-materialize</code> to <code>NONE</code> always in Flink SQL TableConfig.
+</blockquote>
+
+<p>Sometimes users only care about aggregated results. The <code>aggregation</code> merge engine aggregates each value field with the latest data one by one under the same primary key according to the aggregate function.</p>
+<p>Each field not part of the primary keys can be given an aggregate function, specified by the <code>fields.&lt;field-name&gt;.aggregate-function</code> table property, otherwise it will use <code>last_non_null_value</code> aggregation as default. For example, consider the following table definition.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Flink"
+    name="tabs-aggregation-merge-engine-example"
+    id="tabs-aggregation-merge-engine-example-0"
+    checked="checked" 
+    onclick="onSwitch('Flink')"
+  />
+  <label for="tabs-aggregation-merge-engine-example-0">Flink</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">MyTable</span> <span class="p">(</span>
+    <span class="n">product_id</span> <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="n">price</span> <span class="n">DOUBLE</span><span class="p">,</span>
+    <span class="n">sales</span> <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">product_id</span><span class="p">)</span> <span class="k">NOT</span> <span class="n">ENFORCED</span>
+<span class="p">)</span> <span class="k">WITH</span> <span class="p">(</span>
+    <span class="s1">&#39;merge-engine&#39;</span> <span class="o">=</span> <span class="s1">&#39;aggregation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fields.price.aggregate-function&#39;</span> <span class="o">=</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fields.sales.aggregate-function&#39;</span> <span class="o">=</span> <span class="s1">&#39;sum&#39;</span>
+<span class="p">);</span>
+</code></pre></div></div></div>
+
+<p>Field <code>price</code> will be aggregated by the <code>max</code> function, and field <code>sales</code> will be aggregated by the <code>sum</code> function. Given two input records <code>&lt;1, 23.0, 15&gt;</code> and <code>&lt;1, 30.2, 20&gt;</code>, the final result will be <code>&lt;1, 30.2, 35&gt;</code>.</p>
+<p>Current supported aggregate functions and data types are:</p>
+<ul>
+<li><code>sum</code>: supports DECIMAL, TINYINT, SMALLINT, INTEGER, BIGINT, FLOAT and DOUBLE.</li>
+<li><code>min</code>/<code>max</code>: support DECIMAL, TINYINT, SMALLINT, INTEGER, BIGINT, FLOAT, DOUBLE, DATE, TIME, TIMESTAMP and TIMESTAMP_LTZ.</li>
+<li><code>last_value</code> / <code>last_non_null_value</code>: support all data types.</li>
+<li><code>listagg</code>: supports STRING data type.</li>
+<li><code>bool_and</code> / <code>bool_or</code>: support BOOLEAN data type.</li>
+</ul>
+<p>Only <code>sum</code> supports retraction (<code>UPDATE_BEFORE</code> and <code>DELETE</code>), others aggregate functions do not support retraction.
+If you allow some functions to ignore retraction messages, you can configure:
+<code>'fields.${field_name}.ignore-retract'='true'</code>.</p>
+<blockquote class="book-hint info">
+  For streaming queries, <code>aggregation</code> merge engine must be used together with <code>lookup</code> or <code>full-compaction</code> <a href="//paimon.apache.org/docs/0.4/concepts/primary-key-table/#changelog-producers">changelog producer</a>.
+</blockquote>
+
+<h2 id="changelog-producers">
+  Changelog Producers
+  <a class="anchor" href="#changelog-producers">#</a>
+</h2>
+<p>Streaming queries will continuously produce latest changes. These changes can come from the underlying table files or from an <a href="//paimon.apache.org/docs/0.4/concepts/external-log-systems/">external log system</a> like Kafka. Compared to the external log system, changes from table files have lower cost but higher latency (depending on how often snapshots are created).</p>
+<p>By specifying the <code>changelog-producer</code> table property when creating the table, users can choose the pattern of changes produced from files.</p>
+<blockquote class="book-hint info">
+  The <code>changelog-producer</code> table property only affects changelog from files. It does not affect the external log system.
+</blockquote>
+
+<h3 id="none">
+  None
+  <a class="anchor" href="#none">#</a>
+</h3>
+<p>By default, no extra changelog producer will be applied to the writer of table. Paimon source can only see the merged changes across snapshots, like what keys are removed and what are the new values of some keys.</p>
+<p>However, these merged changes cannot form a complete changelog, because we can&rsquo;t read the old values of the keys directly from them. Merged changes require the consumers to &ldquo;remember&rdquo; the values of each key and to rewrite the values without seeing the old ones. Some consumers, however, need the old values to ensure correctness or efficiency.</p>
+<p>Consider a consumer which calculates the sum on some grouping keys (might not be equal to the primary keys). If the consumer only sees a new value <code>5</code>, it cannot determine what values should be added to the summing result. For example, if the old value is <code>4</code>, it should add <code>1</code> to the result. But if the old value is <code>6</code>, it should in turn subtract <code>1</code> from the result. Old values are important for these types of consumers.</p>
+<p>To conclude, <code>none</code> changelog producers are best suited for consumers such as a database system. Flink also has a built-in &ldquo;normalize&rdquo; operator which persists the values of each key in states. As one can easily tell, this operator will be very costly and should be avoided.</p>
+
+<img 
+  src="//paimon.apache.org/docs/0.4/img/changelog-producer-none.png"
+  alt=""
+  width=""
+  style="display:block;margin-left:auto;margin-right:auto"
+>
+
+<h3 id="input">
+  Input
+  <a class="anchor" href="#input">#</a>
+</h3>
+<p>By specifying <code>'changelog-producer' = 'input'</code>, Paimon writers rely on their inputs as a source of complete changelog. All input records will be saved in separated <a href="//paimon.apache.org/docs/0.4/concepts/file-layouts/">changelog files</a> and will be given to the consumers by Paimon sources.</p>
+<p><code>input</code> changelog producer can be used when Paimon writers' inputs are complete changelog, such as from a database CDC, or generated by Flink stateful computation.</p>
+
+<img 
+  src="//paimon.apache.org/docs/0.4/img/changelog-producer-input.png"
+  alt=""
+  width=""
+  style="display:block;margin-left:auto;margin-right:auto"
+>
+
+<h3 id="lookup">
+  Lookup
+  <a class="anchor" href="#lookup">#</a>
+</h3>
+<blockquote class="book-hint info">
+  This is an experimental feature.
+</blockquote>
+
+<p>If your input can’t produce a complete changelog but you still want to get rid of the costly normalized operator, you may consider using the <code>'lookup'</code> changelog producer.</p>
+<p>By specifying <code>'changelog-producer' = 'lookup'</code>, Paimon will generate changelog through <code>'lookup'</code> before committing the data writing.</p>
+
+<img 
+  src="//paimon.apache.org/docs/0.4/img/changelog-producer-lookup.png"
+  alt=""
+  width=""
+  style="display:block;margin-left:auto;margin-right:auto"
+>
+
+<p>Lookup will cache data on the memory and local disk, you can use the following options to tune performance:</p>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+      <th class="text-left" style="width: 20%">Option</th>
+      <th class="text-left" style="width: 5%">Default</th>
+      <th class="text-left" style="width: 10%">Type</th>
+      <th class="text-left" style="width: 60%">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><h5>lookup.cache-file-retention</h5></td>
+        <td style="word-wrap: break-word;">1 h</td>
+        <td>Duration</td>
+        <td>The cached files retention time for lookup. After the file expires, if there is a need for access, it will be re-read from the DFS to build an index on the local disk.</td>
+    </tr>
+    <tr>
+        <td><h5>lookup.cache-max-disk-size</h5></td>
+        <td style="word-wrap: break-word;">unlimited</td>
+        <td>MemorySize</td>
+        <td>Max disk size for lookup cache, you can use this option to limit the use of local disks.</td>
+    </tr>
+    <tr>
+        <td><h5>lookup.cache-max-memory-size</h5></td>
+        <td style="word-wrap: break-word;">256 mb</td>
+        <td>MemorySize</td>
+        <td>Max memory size for lookup cache.</td>
+    </tr>
+    </tbody>
+</table>
+<h3 id="full-compaction">
+  Full Compaction
+  <a class="anchor" href="#full-compaction">#</a>
+</h3>
+<p>If you think the resource consumption of &lsquo;lookup&rsquo; is too large, you can consider using &lsquo;full-compaction&rsquo; changelog producer,
+which can decouple data writing and changelog generation, and is more suitable for scenarios with high latency (For example, 10 minutes).</p>
+<p>By specifying <code>'changelog-producer' = 'full-compaction'</code>, Paimon will compare the results between full compactions and produce the differences as changelog. The latency of changelog is affected by the frequency of full compactions.</p>
+<p>By specifying <code>full-compaction.delta-commits</code> table property, full compaction will be constantly triggered after delta commits (checkpoints). This is set to 1 by default, so each checkpoint will have a full compression and generate a change log.</p>
+
+<img 
+  src="//paimon.apache.org/docs/0.4/img/changelog-producer-full-compaction.png"
+  alt=""
+  width=""
+  style="display:block;margin-left:auto;margin-right:auto"
+>
+
+<blockquote class="book-hint info">
+  Full compaction changelog producer can produce complete changelog for any type of source. However it is not as efficient as the input changelog producer and the latency to produce changelog might be high.
+</blockquote>
+
+<h2 id="sequence-field">
+  Sequence Field
+  <a class="anchor" href="#sequence-field">#</a>
+</h2>
+<p>By default, the primary key table determines the merge order according to the input order (the last input record will be the last to merge). However, in distributed computing,
+there will be some cases that lead to data disorder. At this time, you can use a time field as <code>sequence.field</code>, for example:</p>
+<blockquote class="book-hint info">
+  When the record is updated or deleted, the <code>sequence.field</code> must become larger and cannot remain unchanged. For example,
+you can use <a href="https://ververica.github.io/flink-cdc-connectors/master/content/connectors/mysql-cdc.html#available-metadata">Mysql Binlog operation time</a> as <code>sequence.field</code>.
+</blockquote>
+
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Flink"
+    name="tabs-sequence.field"
+    id="tabs-sequence.field-0"
+    checked="checked" 
+    onclick="onSwitch('Flink')"
+  />
+  <label for="tabs-sequence.field-0">Flink</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">MyTable</span> <span class="p">(</span>
+    <span class="n">pk</span> <span class="nb">BIGINT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="k">NOT</span> <span class="n">ENFORCED</span><span class="p">,</span>
+    <span class="n">v1</span> <span class="n">DOUBLE</span><span class="p">,</span>
+    <span class="n">v2</span> <span class="nb">BIGINT</span><span class="p">,</span>
+    <span class="n">dt</span> <span class="k">TIMESTAMP</span>
+<span class="p">)</span> <span class="k">WITH</span> <span class="p">(</span>
+    <span class="s1">&#39;sequence.field&#39;</span> <span class="o">=</span> <span class="s1">&#39;dt&#39;</span>
+<span class="p">);</span>
+</code></pre></div></div></div>
+
+<p>The record with the largest <code>sequence.field</code> value will be the last to merge, regardless of the input order.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/incubator-paimon/edit/0.4/docs/content/concepts/primary-key-table.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#merge-engines">Merge Engines</a>
+      <ul>
+        <li><a href="#deduplicate">Deduplicate</a></li>
+        <li><a href="#partial-update">Partial Update</a></li>
+        <li><a href="#aggregation">Aggregation</a></li>
+      </ul>
+    </li>
+    <li><a href="#changelog-producers">Changelog Producers</a>
+      <ul>
+        <li><a href="#none">None</a></li>
+        <li><a href="#input">Input</a></li>
+        <li><a href="#lookup">Lookup</a></li>
+        <li><a href="#full-compaction">Full Compaction</a></li>
+      </ul>
+    </li>
+    <li><a href="#sequence-field">Sequence Field</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

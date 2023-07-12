@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Altering Tables #  Changing/Adding Table Properties #  The following SQL sets write-buffer-size table property to 256 MB.
+Flink ALTER TABLE my_table SET ( &#39;write-buffer-size&#39; = &#39;256 MB&#39; ); Spark3 ALTER TABLE my_table SET TBLPROPERTIES ( &#39;write-buffer-size&#39; = &#39;256 MB&#39; );  Rename Table Name #  The following SQL rename the table name to new name.
+Flink ALTER TABLE my_table RENAME TO my_table_new; Spark3 ALTER TABLE my_table RENAME TO my_table_new;  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Altering Tables" />
+<meta property="og:description" content="Altering Tables #  Changing/Adding Table Properties #  The following SQL sets write-buffer-size table property to 256 MB.
+Flink ALTER TABLE my_table SET ( &#39;write-buffer-size&#39; = &#39;256 MB&#39; ); Spark3 ALTER TABLE my_table SET TBLPROPERTIES ( &#39;write-buffer-size&#39; = &#39;256 MB&#39; );  Rename Table Name #  The following SQL rename the table name to new name.
+Flink ALTER TABLE my_table RENAME TO my_table_new; Spark3 ALTER TABLE my_table RENAME TO my_table_new;  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/" />
+
+<title>Altering Tables | Apache Flink Table Store</title>
+<link rel="manifest" href="/flink/flink-table-store-docs-release-0.3/manifest.json">
+<link rel="icon" href="/flink/flink-table-store-docs-release-0.3/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/flink/flink-table-store-docs-release-0.3/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/flink/flink-table-store-docs-release-0.3/en.search.min.bd2fd37bc7f836c4face92be4fc4fa0e40609bd9198352bf46bbd3a7436e380c.js" integrity="sha256-vS/Te8f4NsT6zpK&#43;T8T6DkBgm9kZg1K/RrvTp0NuOAw="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/font-awesome/css/font-awesome.min.css">
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/anchor.min.js"></script>
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+    <img width="70%" src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/navbar-brand-logo.jpg">
+</a>
+<p style="text-align:right">v0.3.0</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-6c07f7e07850a28420f21d62041fba0d" class="toggle"  />
+    <label for="section-6c07f7e07850a28420f21d62041fba0d" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/" class="">LSM Trees</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/" class="">Consistency Guarantees</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="toggle"  />
+    <label for="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f2a11ba4196b33034e80bb68b108033e" class="toggle"  />
+    <label for="section-f2a11ba4196b33034e80bb68b108033e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-9158e11b187116611eb1a3ed1d21db1e" class="toggle" checked />
+    <label for="section-9158e11b187116611eb1a3ed1d21db1e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/" class=" active">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-df6d1d7f40d2e224a80f115a5b7830c6" class="toggle"  />
+    <label for="section-df6d1d7f40d2e224a80f115a5b7830c6" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-star title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Features</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/" class="">Table Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="toggle"  />
+    <label for="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//flink.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+      0.3 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.2">
+          v0.2
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Altering Tables</strong>
+
+  <label for="toc-control">
+    
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#changingadding-table-properties">Changing/Adding Table Properties</a></li>
+    <li><a href="#rename-table-name">Rename Table Name</a></li>
+    <li><a href="#removing-table-properties">Removing Table Properties</a></li>
+    <li><a href="#adding-new-columns">Adding New Columns</a></li>
+    <li><a href="#renaming-column-name">Renaming Column Name</a></li>
+    <li><a href="#dropping-columns">Dropping Columns</a></li>
+    <li><a href="#changing-column-nullability">Changing Column Nullability</a></li>
+    <li><a href="#changing-column-comment">Changing Column Comment</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="altering-tables">
+  Altering Tables
+  <a class="anchor" href="#altering-tables">#</a>
+</h1>
+<h2 id="changingadding-table-properties">
+  Changing/Adding Table Properties
+  <a class="anchor" href="#changingadding-table-properties">#</a>
+</h2>
+<p>The following SQL sets <code>write-buffer-size</code> table property to <code>256 MB</code>.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Flink"
+    name="tabs-set-properties-example"
+    id="tabs-set-properties-example-0"
+    checked="checked" 
+    onclick="onSwitch('Flink')"
+  />
+  <label for="tabs-set-properties-example-0">Flink</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">SET</span> <span class="p">(</span>
+    <span class="s1">&#39;write-buffer-size&#39;</span> <span class="o">=</span> <span class="s1">&#39;256 MB&#39;</span>
+<span class="p">);</span>
+</code></pre></div></div><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-set-properties-example"
+    id="tabs-set-properties-example-1"
+     
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-set-properties-example-1">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">SET</span> <span class="n">TBLPROPERTIES</span> <span class="p">(</span>
+    <span class="s1">&#39;write-buffer-size&#39;</span> <span class="o">=</span> <span class="s1">&#39;256 MB&#39;</span>
+<span class="p">);</span>
+</code></pre></div></div></div>
+
+<h2 id="rename-table-name">
+  Rename Table Name
+  <a class="anchor" href="#rename-table-name">#</a>
+</h2>
+<p>The following SQL rename the table name to new name.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Flink"
+    name="tabs-rename-table-name"
+    id="tabs-rename-table-name-0"
+    checked="checked" 
+    onclick="onSwitch('Flink')"
+  />
+  <label for="tabs-rename-table-name-0">Flink</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">my_table_new</span><span class="p">;</span>
+</code></pre></div></div><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-rename-table-name"
+    id="tabs-rename-table-name-1"
+     
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-rename-table-name-1">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">RENAME</span> <span class="k">TO</span> <span class="n">my_table_new</span><span class="p">;</span>
+</code></pre></div></div></div>
+
+<blockquote class="book-hint info">
+  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure.
+</blockquote>
+
+<h2 id="removing-table-properties">
+  Removing Table Properties
+  <a class="anchor" href="#removing-table-properties">#</a>
+</h2>
+<p>The following SQL removes <code>write-buffer-size</code> table property.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Flink"
+    name="tabs-unset-properties-example"
+    id="tabs-unset-properties-example-0"
+    checked="checked" 
+    onclick="onSwitch('Flink')"
+  />
+  <label for="tabs-unset-properties-example-0">Flink</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">RESET</span> <span class="p">(</span><span class="s1">&#39;write-buffer-size&#39;</span><span class="p">);</span>
+</code></pre></div></div><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-unset-properties-example"
+    id="tabs-unset-properties-example-1"
+     
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-unset-properties-example-1">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="n">UNSET</span> <span class="n">TBLPROPERTIES</span> <span class="p">(</span><span class="s1">&#39;write-buffer-size&#39;</span><span class="p">);</span>
+</code></pre></div></div></div>
+
+<h2 id="adding-new-columns">
+  Adding New Columns
+  <a class="anchor" href="#adding-new-columns">#</a>
+</h2>
+<p>The following SQL adds two columns <code>c1</code> and <code>c2</code> to table <code>my_table</code>.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-add-columns-example"
+    id="tabs-add-columns-example-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-add-columns-example-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">ADD</span> <span class="n">COLUMNS</span> <span class="p">(</span>
+    <span class="n">c1</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">c2</span> <span class="n">STRING</span>
+<span class="p">);</span>
+</code></pre></div></div></div>
+
+<h2 id="renaming-column-name">
+  Renaming Column Name
+  <a class="anchor" href="#renaming-column-name">#</a>
+</h2>
+<p>The following SQL renames column <code>c0</code> in table <code>my_table</code> to <code>c1</code>.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-rename-column-name-example"
+    id="tabs-rename-column-name-example-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-rename-column-name-example-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">RENAME</span> <span class="k">COLUMN</span> <span class="n">c0</span> <span class="k">TO</span> <span class="n">c1</span><span class="p">;</span>
+</code></pre></div></div></div>
+
+<h2 id="dropping-columns">
+  Dropping Columns
+  <a class="anchor" href="#dropping-columns">#</a>
+</h2>
+<p>The syntax is:</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-drop-columns-syntax"
+    id="tabs-drop-columns-syntax-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-drop-columns-syntax-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">table_identifier</span> <span class="k">DROP</span> <span class="err">{</span> <span class="k">COLUMN</span> <span class="o">|</span> <span class="n">COLUMNS</span> <span class="err">}</span> <span class="p">[(]</span> <span class="n">col_name</span> <span class="p">[,</span> <span class="p">...</span> <span class="p">]</span> <span class="p">[)]</span>
+</code></pre></div></div></div>
+
+<p>The following SQL drops tow columns <code>c1</code> and <code>c2</code> from table <code>my_table</code>.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-drop-columns-example"
+    id="tabs-drop-columns-example-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-drop-columns-example-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">DROP</span> <span class="n">COLUMNS</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">);</span>
+</code></pre></div></div></div>
+
+<h2 id="changing-column-nullability">
+  Changing Column Nullability
+  <a class="anchor" href="#changing-column-nullability">#</a>
+</h2>
+<p>The following SQL sets column <code>coupon_info</code> to be nullable.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-change-nullability-example"
+    id="tabs-change-nullability-example-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-change-nullability-example-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">ALTER</span> <span class="k">COLUMN</span> <span class="n">coupon_info</span> <span class="k">DROP</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">;</span>
+</code></pre></div></div></div>
+
+<h2 id="changing-column-comment">
+  Changing Column Comment
+  <a class="anchor" href="#changing-column-comment">#</a>
+</h2>
+<p>The following SQL changes comment of column <code>buy_count</code> to <code>buy count</code>.</p>
+
+
+
+
+
+<div class="book-tabs"><input 
+    type="radio"
+    class="toggle"
+    data-tab-group="flink-tabs"
+    data-tab-item="Spark3"
+    name="tabs-change-comment-example"
+    id="tabs-change-comment-example-0"
+    checked="checked" 
+    onclick="onSwitch('Spark3')"
+  />
+  <label for="tabs-change-comment-example-0">Spark3</label>
+  <div class="book-tabs-content markdown-inner"><div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">my_table</span> <span class="k">ALTER</span> <span class="k">COLUMN</span> <span class="n">buy_count</span> <span class="k">COMMENT</span> <span class="s1">&#39;buy count&#39;</span><span class="p">;</span>
+</code></pre></div></div></div>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/flink-table-store/edit/release-0.3/docs/content/docs/how-to/altering-tables.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#changingadding-table-properties">Changing/Adding Table Properties</a></li>
+    <li><a href="#rename-table-name">Rename Table Name</a></li>
+    <li><a href="#removing-table-properties">Removing Table Properties</a></li>
+    <li><a href="#adding-new-columns">Adding New Columns</a></li>
+    <li><a href="#renaming-column-name">Renaming Column Name</a></li>
+    <li><a href="#dropping-columns">Dropping Columns</a></li>
+    <li><a href="#changing-column-nullability">Changing Column Nullability</a></li>
+    <li><a href="#changing-column-comment">Changing Column Comment</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

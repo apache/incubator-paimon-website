@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Community on Apache Paimon</title>
+    <link>//paimon.apache.org/community/</link>
+    <description>Recent content in Community on Apache Paimon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//paimon.apache.org/community/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Contribute</title>
+      <link>//paimon.apache.org/community/how-to-contribute/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/community/how-to-contribute/</guid>
+      <description>How to Contribute #  Apache Paimon (incubating) is developed by an open and friendly community. Everybody is cordially welcome to join the community and contribute to Apache Paimon. There are several ways to interact with the community and contribute to Paimon including asking questions, filing bug reports, proposing new features, joining discussions on the mailing lists, contributing code or documentation, improving website, testing release candidates and writing corresponding blog etc.</description>
+    </item>
+    
+    <item>
+      <title>People</title>
+      <link>//paimon.apache.org/community/people/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/community/people/</guid>
+      <description>People #  Mentors #   Becket Qin Robert Metzger Stephan Ewen Yu Li  PPMC #   Jingsong Lee Caizhi Weng Feng Wang Nicholas Jiang Timo Walther Fang Yong  Committers #   Jingsong Lee Caizhi Weng Feng Wang Nicholas Jiang Timo Walther Fang Yong Zelin Yu  </description>
+    </item>
+    
+  </channel>
+</rss>

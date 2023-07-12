@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engines on Apache Paimon</title>
+    <link>//paimon.apache.org/docs/0.4/engines/</link>
+    <description>Recent content in Engines on Apache Paimon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//paimon.apache.org/docs/0.4/engines/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>//paimon.apache.org/docs/0.4/engines/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/overview/</guid>
+      <description>Overview #  Paimon not only supports Flink SQL writes and queries natively, but also provides queries from other popular engines, such as Apache Spark and Apache Hive.
+Compatibility Matrix #     Engine Version Batch Read Batch Write Create Table Streaming Write Streaming Read Batch Overwrite     Flink 1.14 - 1.17 ✅ ✅ ✅ ✅ ✅ ✅   Hive 2.1 - 3.1 ✅ ✅ ❌ ❌ ❌ ❌   Spark 3.</description>
+    </item>
+    
+    <item>
+      <title>Flink</title>
+      <link>//paimon.apache.org/docs/0.4/engines/flink/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/flink/</guid>
+      <description>Flink #  This documentation is a guide for using Paimon in Flink.
+Preparing Paimon Jar File #  Paimon currently supports Flink 1.17, 1.16, 1.15 and 1.14. We recommend the latest Flink version for a better experience.
+Download the jar file with corresponding version.
+   Version Jar     Flink 1.17 paimon-flink-1.17-0.4.0-incubating.jar   Flink 1.16 paimon-flink-1.16-0.4.0-incubating.jar   Flink 1.15 paimon-flink-1.15-0.4.0-incubating.jar   Flink 1.</description>
+    </item>
+    
+    <item>
+      <title>Spark3</title>
+      <link>//paimon.apache.org/docs/0.4/engines/spark3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/spark3/</guid>
+      <description>Spark3 #  This documentation is a guide for using Paimon in Spark3.
+Preparing Paimon Jar File #  Paimon currently supports Spark 3.3, 3.2 and 3.1. We recommend the latest Spark version for a better experience.
+Download the jar file with corresponding version.
+   Version Jar     Spark 3.3 paimon-spark-3.3-0.4.0-incubating.jar   Spark 3.2 paimon-spark-3.2-0.4.0-incubating.jar   Spark 3.1 paimon-spark-3.1-0.4.0-incubating.jar    You can also manually build bundled jar from the source code.</description>
+    </item>
+    
+    <item>
+      <title>Spark2</title>
+      <link>//paimon.apache.org/docs/0.4/engines/spark2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/spark2/</guid>
+      <description>Spark2 #  This documentation is a guide for using Paimon in Spark2.
+Version #  Paimon supports Spark 2.4+. It is highly recommended to use Spark 2.4+ version with many improvements.
+Preparing Paimon Jar File #  Download paimon-spark-2-0.4.0-incubating.jar. You can also manually build bundled jar from the source code.
+To build from source code, clone the git repository.
+Build bundled jar with the following command.
+mvn clean install -DskipTests You can find the bundled jar in .</description>
+    </item>
+    
+    <item>
+      <title>Hive</title>
+      <link>//paimon.apache.org/docs/0.4/engines/hive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/hive/</guid>
+      <description>Hive #  This documentation is a guide for using Paimon in Hive.
+Version #  Paimon currently supports Hive 2.1, 2.1-cdh-6.3, 2.2, 2.3 and 3.1.
+Execution Engine #  Paimon currently supports MR and Tez execution engine for Hive.
+Installation #  Download the jar file with corresponding version.
+    Jar     Hive 3.1 paimon-hive-connector-3.1-0.4.0-incubating.jar   Hive 2.3 paimon-hive-connector-2.3-0.4.0-incubating.jar   Hive 2.</description>
+    </item>
+    
+    <item>
+      <title>Presto</title>
+      <link>//paimon.apache.org/docs/0.4/engines/presto/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/presto/</guid>
+      <description>This documentation is a guide for using Paimon in Presto.
+Version #  Paimon currently supports Presto 0.236 and above.
+Preparing Paimon Jar File #  Download the jar file with corresponding version.
+   Version Jar     [0.236,0.268) paimon-presto-0.236-0.4.0-incubating.jar   [0.268,0.273) paimon-presto-0.268-0.4.0-incubating.jar   [0.273,0.279] paimon-presto-0.273-0.4.0-incubating.jar    You can also manually build bundled jar from the source code.
+To build from source code, clone the git repository.</description>
+    </item>
+    
+    <item>
+      <title>Trino</title>
+      <link>//paimon.apache.org/docs/0.4/engines/trino/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/engines/trino/</guid>
+      <description>Trino #  Because Trino&amp;rsquo;s dependency is JDK 11, it is not possible to include the trino connector in paimon.
+See paimon-trino.</description>
+    </item>
+    
+  </channel>
+</rss>

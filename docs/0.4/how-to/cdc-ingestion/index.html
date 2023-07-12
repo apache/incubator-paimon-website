@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="CDC Ingestion #  Paimon supports synchronizing changes from different databases using change data capture (CDC). This feature requires Flink and its CDC connectors.
+MySQL #  Prepare CDC Bundled Jar #  flink-sql-connector-mysql-cdc-*.jar Synchronizing Tables #  By using MySqlSyncTableAction in a Flink DataStream job or directly through flink run, users can synchronize one or multiple tables from MySQL into one Paimon table.
+To use this feature through flink run, run the following shell command.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="CDC Ingestion" />
+<meta property="og:description" content="CDC Ingestion #  Paimon supports synchronizing changes from different databases using change data capture (CDC). This feature requires Flink and its CDC connectors.
+MySQL #  Prepare CDC Bundled Jar #  flink-sql-connector-mysql-cdc-*.jar Synchronizing Tables #  By using MySqlSyncTableAction in a Flink DataStream job or directly through flink run, users can synchronize one or multiple tables from MySQL into one Paimon table.
+To use this feature through flink run, run the following shell command." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//paimon.apache.org/docs/0.4/how-to/cdc-ingestion/" />
+
+<title>CDC Ingestion | Apache Paimon</title>
+<link rel="manifest" href="/docs/0.4/manifest.json">
+<link rel="icon" href="/docs/0.4/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/docs/0.4/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/docs/0.4/en.search.min.82772eb61ecc44f360614f479f24141df8cb8040bb99fbc9def3c06c72388433.js" integrity="sha256-gncuth7MRPNgYU9HnyQUHfjLgEC7mfvJ3vPAbHI4hDM="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//paimon.apache.org/docs/0.4/font-awesome/css/font-awesome.min.css">
+<script src="//paimon.apache.org/docs/0.4/js/anchor.min.js"></script>
+<script src="//paimon.apache.org/docs/0.4/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//paimon.apache.org/docs/0.4">
+    <img width="100%" src="//paimon.apache.org/docs/0.4/paimon_black.svg">
+</a>
+<p style="text-align:right">0.4.0-incubating</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-dc8a1c63e6da60163016ce21cae1faa0" class="toggle"  />
+    <label for="section-dc8a1c63e6da60163016ce21cae1faa0" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/file-operations/" class="">File Operations</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/primary-key-table/" class="">Primary Key Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/append-only-table/" class="">Append Only Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/concepts/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-90f5541dc4fa46a212e954b9193ea0f9" class="toggle"  />
+    <label for="section-90f5541dc4fa46a212e954b9193ea0f9" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/presto/" class="">Presto</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-e2d76c106dab115385ef7f124cda2ba4" class="toggle"  />
+    <label for="section-e2d76c106dab115385ef7f124cda2ba4" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/hdfs/" class="">HDFS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f6ca435e98b926845c0060f9e7f85362" class="toggle" checked />
+    <label for="section-f6ca435e98b926845c0060f9e7f85362" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/how-to/cdc-ingestion/" class=" active">CDC Ingestion</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-697a4b6a0388d6cfa4f418aba3b4edfe" class="toggle"  />
+    <label for="section-697a4b6a0388d6cfa4f418aba3b4edfe" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/read-performance/" class="">Read Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-1b3eda2e8317c0686a4d41cefa0a3453" class="toggle"  />
+    <label for="section-1b3eda2e8317c0686a4d41cefa0a3453" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-briefcase title maindish" aria-hidden="true"></i>&nbsp;&nbsp;API</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/api/java-api/" class="">Java API</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/api/flink-api/" class="">Flink API</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  	<br/>
+  
+  
+    <input type="checkbox" id="section-8c828bcf882f666cdd6821a70cc768ee" class="toggle"  />
+    <label for="section-8c828bcf882f666cdd6821a70cc768ee" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-sitemap title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Project</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/roadmap/" class="">Roadmap</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/download/" class="">Download</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/0.4/project/contributing/" class="">Contributing</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//paimon.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//paimon.apache.org/docs/master/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//paimon.apache.org/docs/0.4">
+      0.4 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://paimon.apache.org/docs/master">
+          master
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+          stable
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+          0.3
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//paimon.apache.org/docs/0.4/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/docs/0.4/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>CDC Ingestion</strong>
+
+  <label for="toc-control">
+    
+    <img src="/docs/0.4/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#mysql">MySQL</a>
+      <ul>
+        <li><a href="#prepare-cdc-bundled-jar">Prepare CDC Bundled Jar</a></li>
+        <li><a href="#synchronizing-tables">Synchronizing Tables</a></li>
+        <li><a href="#synchronizing-databases">Synchronizing Databases</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="cdc-ingestion">
+  CDC Ingestion
+  <a class="anchor" href="#cdc-ingestion">#</a>
+</h1>
+<p>Paimon supports synchronizing changes from different databases using change data capture (CDC). This feature requires Flink and its <a href="https://ververica.github.io/flink-cdc-connectors/">CDC connectors</a>.</p>
+<h2 id="mysql">
+  MySQL
+  <a class="anchor" href="#mysql">#</a>
+</h2>
+<h3 id="prepare-cdc-bundled-jar">
+  Prepare CDC Bundled Jar
+  <a class="anchor" href="#prepare-cdc-bundled-jar">#</a>
+</h3>
+<pre><code>flink-sql-connector-mysql-cdc-*.jar
+</code></pre><h3 id="synchronizing-tables">
+  Synchronizing Tables
+  <a class="anchor" href="#synchronizing-tables">#</a>
+</h3>
+<p>By using <a href="/docs/0.4/api/java/org/apache/paimon/flink/action/cdc/mysql/MySqlSyncTableAction">MySqlSyncTableAction</a> in a Flink DataStream job or directly through <code>flink run</code>, users can synchronize one or multiple tables from MySQL into one Paimon table.</p>
+<p>To use this feature through <code>flink run</code>, run the following shell command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt;FLINK_HOME&gt;/bin/flink run <span class="se">\
+</span><span class="se"></span>    /path/to/paimon-flink-action-0.4.0-incubating.jar <span class="se">\
+</span><span class="se"></span>    mysql-sync-table
+    --warehouse &lt;warehouse-path&gt; <span class="se">\
+</span><span class="se"></span>    --database &lt;database-name&gt; <span class="se">\
+</span><span class="se"></span>    --table &lt;table-name&gt; <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--partition-keys &lt;partition-keys&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--primary-keys &lt;primary-keys&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--computed-column &lt;<span class="s1">&#39;column-name=expr-name(args[, ...])&#39;</span>&gt; <span class="o">[</span>--computed-column ...<span class="o">]]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--mysql-conf &lt;mysql-cdc-source-conf&gt; <span class="o">[</span>--mysql-conf &lt;mysql-cdc-source-conf&gt; ...<span class="o">]]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--catalog-conf &lt;paimon-catalog-conf&gt; <span class="o">[</span>--catalog-conf &lt;paimon-catalog-conf&gt; ...<span class="o">]]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--table-conf &lt;paimon-table-sink-conf&gt; <span class="o">[</span>--table-conf &lt;paimon-table-sink-conf&gt; ...<span class="o">]]</span>
+</code></pre></div>
+
+<table class="configuration table table-bordered">
+    <thead>
+    <tr>
+        <th class="text-left" style="width: 15%">Configuration</th>
+        <th class="text-left" style="width: 85%">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><h5>--warehouse</h5></td>
+        <td>The path to Paimon warehouse.</td>
+    </tr>
+    <tr>
+        <td><h5>--database</h5></td>
+        <td>The database name in Paimon catalog.</td>
+    </tr>
+    <tr>
+        <td><h5>--table</h5></td>
+        <td>The Paimon table name.</td>
+    </tr>
+    <tr>
+        <td><h5>--partition-keys</h5></td>
+        <td>The partition keys for Paimon table. If there are multiple partition keys, connect them with comma, for example "dt,hh,mm".</td>
+    </tr>
+    <tr>
+        <td><h5>--primary-keys</h5></td>
+        <td>The primary keys for Paimon table. If there are multiple primary keys, connect them with comma, for example "buyer_id,seller_id".</td>
+    </tr>
+    <tr>
+        <td><h5>--computed-column</h5></td>
+        <td>The definitions of computed columns. The argument field is from MySQL table field name. <br /><br />Supported expressions are: <ul><li>year(date-column): Extract year from a DATE, DATETIME or TIMESTAMP. Output is an INT value represent the year.</li><li>substring(column,beginInclusive): Get column.substring(beginInclusive). Output is a STRING.</li><li>substring(column,beginInclusive,endExclusive): Get column.substring(beginInclusive,endExclusive). Output is a STRING.</li><li>truncate(column,width): truncate column by width. Output type is same with column.<ul><li>If the column is a STRING, truncate(column,width) will truncate the string to width characters, namely "value.substring(0, width)".</li><li>If the column is an INT or LONG, truncate(column,width) will truncate the number with the algorithm "v - (((v % W) + W) % W)". The "redundant" compute part is to keep the result always positive.</li><li>If the column is a DECIMAL, truncate(column,width) will truncate the decimal with the algorithm: let "scaled_W = decimal(W, scale(v))", then return "v - (v % scaled_W)".</li></ul></li></ul></td>
+    </tr>
+    <tr>
+        <td><h5>--mysql-conf</h5></td>
+        <td>The configuration for Flink CDC MySQL table sources. Each configuration should be specified in the format "key=value". hostname, username, password, database-name and table-name are required configurations, others are optional. See its <a href="https://ververica.github.io/flink-cdc-connectors/master/content/connectors/mysql-cdc.html#connector-options">document</a> for a complete list of configurations.</td>
+    </tr>
+    <tr>
+        <td><h5>--catalog-conf</h5></td>
+        <td>The configuration for Paimon catalog. Each configuration should be specified in the format "key=value". See <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/">here</a> for a complete list of catalog configurations.</td>
+    </tr>
+    <tr>
+        <td><h5>--table-conf</h5></td>
+        <td>The configuration for Paimon table sink. Each configuration should be specified in the format "key=value". See <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/">here</a> for a complete list of table configurations.</td>
+    </tr>
+    </tbody>
+</table>
+<p>If the Paimon table you specify does not exist, this action will automatically create the table. Its schema will be derived from all specified MySQL tables. If the Paimon table already exists, its schema will be compared against the schema of all specified MySQL tables.</p>
+<p>This action supports a limited number of schema changes. Currently, the framework can not drop columns, so the behaviors of <code>DROP</code> will be ignored, <code>RENAME</code> will add a new column. Currently supported schema changes includes:</p>
+<ul>
+<li>
+<p>Adding columns.</p>
+</li>
+<li>
+<p>Altering column types. More specifically,</p>
+<ul>
+<li>altering from a string type (char, varchar, text) to another string type with longer length,</li>
+<li>altering from a binary type (binary, varbinary, blob) to another binary type with longer length,</li>
+<li>altering from an integer type (tinyint, smallint, int, bigint) to another integer type with wider range,</li>
+<li>altering from a floating-point type (float, double) to another floating-point type with wider range,</li>
+</ul>
+<p>are supported.</p>
+</li>
+</ul>
+<p>Example</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt;FLINK_HOME&gt;/bin/flink run <span class="se">\
+</span><span class="se"></span>    /path/to/paimon-flink-action-0.4.0-incubating.jar <span class="se">\
+</span><span class="se"></span>    mysql-sync-table <span class="se">\
+</span><span class="se"></span>    --warehouse hdfs:///path/to/warehouse <span class="se">\
+</span><span class="se"></span>    --database test_db <span class="se">\
+</span><span class="se"></span>    --table test_table <span class="se">\
+</span><span class="se"></span>    --partition-keys pt <span class="se">\
+</span><span class="se"></span>    --primary-keys pt,uid <span class="se">\
+</span><span class="se"></span>    --computed-columns <span class="s1">&#39;_year=year(age)&#39;</span> <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">hostname</span><span class="o">=</span>127.0.0.1 <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">username</span><span class="o">=</span>root <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">password</span><span class="o">=</span><span class="m">123456</span> <span class="se">\
+</span><span class="se"></span>    --mysql-conf database-name<span class="o">=</span>source_db <span class="se">\
+</span><span class="se"></span>    --mysql-conf table-name<span class="o">=</span><span class="s1">&#39;source_table_.*&#39;</span> <span class="se">\
+</span><span class="se"></span>    --catalog-conf <span class="nv">metastore</span><span class="o">=</span>hive <span class="se">\
+</span><span class="se"></span>    --catalog-conf <span class="nv">uri</span><span class="o">=</span>thrift://hive-metastore:9083 <span class="se">\
+</span><span class="se"></span>    --table-conf <span class="nv">bucket</span><span class="o">=</span><span class="m">4</span> <span class="se">\
+</span><span class="se"></span>    --table-conf changelog-producer<span class="o">=</span>input <span class="se">\
+</span><span class="se"></span>    --table-conf sink.parallelism<span class="o">=</span><span class="m">4</span>
+</code></pre></div><h3 id="synchronizing-databases">
+  Synchronizing Databases
+  <a class="anchor" href="#synchronizing-databases">#</a>
+</h3>
+<p>By using <a href="/docs/0.4/api/java/org/apache/paimon/flink/action/cdc/mysql/MySqlSyncDatabaseAction">MySqlSyncDatabaseAction</a> in a Flink DataStream job or directly through <code>flink run</code>, users can synchronize the whole MySQL database into one Paimon database.</p>
+<p>To use this feature through <code>flink run</code>, run the following shell command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt;FLINK_HOME&gt;/bin/flink run <span class="se">\
+</span><span class="se"></span>    /path/to/paimon-flink-action-0.4.0-incubating.jar <span class="se">\
+</span><span class="se"></span>    mysql-sync-database
+    --warehouse &lt;warehouse-path&gt; <span class="se">\
+</span><span class="se"></span>    --database &lt;database-name&gt; <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--ignore-incompatible &lt;true/false&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--table-prefix &lt;paimon-table-prefix&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--table-suffix &lt;paimon-table-suffix&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--including-tables &lt;mysql-table-name<span class="p">|</span>name-regular-expr&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--excluding-tables &lt;mysql-table-name<span class="p">|</span>name-regular-expr&gt;<span class="o">]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--mysql-conf &lt;mysql-cdc-source-conf&gt; <span class="o">[</span>--mysql-conf &lt;mysql-cdc-source-conf&gt; ...<span class="o">]]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--catalog-conf &lt;paimon-catalog-conf&gt; <span class="o">[</span>--catalog-conf &lt;paimon-catalog-conf&gt; ...<span class="o">]]</span> <span class="se">\
+</span><span class="se"></span>    <span class="o">[</span>--table-conf &lt;paimon-table-sink-conf&gt; <span class="o">[</span>--table-conf &lt;paimon-table-sink-conf&gt; ...<span class="o">]]</span>
+</code></pre></div>
+
+<table class="configuration table table-bordered">
+    <thead>
+    <tr>
+        <th class="text-left" style="width: 15%">Configuration</th>
+        <th class="text-left" style="width: 85%">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><h5>--warehouse</h5></td>
+        <td>The path to Paimon warehouse.</td>
+    </tr>
+    <tr>
+        <td><h5>--database</h5></td>
+        <td>The database name in Paimon catalog.</td>
+    </tr>
+    <tr>
+        <td><h5>--ignore-incompatible</h5></td>
+        <td>It is default false, in this case, if MySQL table name exists in Paimon and their schema is incompatible,an exception will be thrown. You can specify it to true explicitly to ignore the incompatible tables and exception.</td>
+    </tr>
+    <tr>
+        <td><h5>--table-prefix</h5></td>
+        <td>The prefix of all Paimon tables to be synchronized. For example, if you want all synchronized tables to have "ods_" as prefix, you can specify "--table-prefix ods_".</td>
+    </tr>
+    <tr>
+        <td><h5>--table-suffix</h5></td>
+        <td>The suffix of all Paimon tables to be synchronized. The usage is same as "--table-prefix".</td>
+    </tr>
+    <tr>
+        <td><h5>--including-tables</h5></td>
+        <td>It is used to specify which source tables are to be synchronized. You must use '|' to separate multiple tables.Because '|' is a special character, a comma is required, for example: 'a|b|c'.Regular expression is supported, for example, specifying "--including-tables test|paimon.*" means to synchronize table 'test' and all tables start with 'paimon'.</td>
+    </tr>
+    <tr>
+        <td><h5>--excluding-tables</h5></td>
+        <td>It is used to specify which source tables are not to be synchronized. The usage is same as "--including-tables". "--excluding-tables" has higher priority than "--including-tables" if you specified both.</td>
+    </tr>
+    <tr>
+        <td><h5>--mysql-conf</h5></td>
+        <td>The configuration for Flink CDC MySQL table sources. Each configuration should be specified in the format "key=value". hostname, username, password, database-name and table-name are required configurations, others are optional. See its <a href="https://ververica.github.io/flink-cdc-connectors/master/content/connectors/mysql-cdc.html#connector-options">document</a> for a complete list of configurations.</td>
+    </tr>
+    <tr>
+        <td><h5>--catalog-conf</h5></td>
+        <td>The configuration for Paimon catalog. Each configuration should be specified in the format "key=value". See <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/">here</a> for a complete list of catalog configurations.</td>
+    </tr>
+    <tr>
+        <td><h5>--table-conf</h5></td>
+        <td>The configuration for Paimon table sink. Each configuration should be specified in the format "key=value". See <a href="//paimon.apache.org/docs/0.4/maintenance/configurations/">here</a> for a complete list of table configurations.</td>
+    </tr>
+    </tbody>
+</table>
+<p>Only tables with primary keys will be synchronized.</p>
+<p>For each MySQL table to be synchronized, if the corresponding Paimon table does not exist, this action will automatically create the table. Its schema will be derived from all specified MySQL tables. If the Paimon table already exists, its schema will be compared against the schema of all specified MySQL tables.</p>
+<p>This action supports a limited number of schema changes. Currently, the framework can not drop columns, so the behaviors of <code>DROP</code> will be ignored, <code>RENAME</code> will add a new column. Currently supported schema changes includes:</p>
+<ul>
+<li>
+<p>Adding columns.</p>
+</li>
+<li>
+<p>Altering column types. More specifically,</p>
+<ul>
+<li>altering from a string type (char, varchar, text) to another string type with longer length,</li>
+<li>altering from a binary type (binary, varbinary, blob) to another binary type with longer length,</li>
+<li>altering from an integer type (tinyint, smallint, int, bigint) to another integer type with wider range,</li>
+<li>altering from a floating-point type (float, double) to another floating-point type with wider range,</li>
+</ul>
+<p>are supported.</p>
+</li>
+</ul>
+<p>Example</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">&lt;FLINK_HOME&gt;/bin/flink run <span class="se">\
+</span><span class="se"></span>    /path/to/paimon-flink-action-0.4.0-incubating.jar <span class="se">\
+</span><span class="se"></span>    mysql-sync-database <span class="se">\
+</span><span class="se"></span>    --warehouse hdfs:///path/to/warehouse <span class="se">\
+</span><span class="se"></span>    --database test_db <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">hostname</span><span class="o">=</span>127.0.0.1 <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">username</span><span class="o">=</span>root <span class="se">\
+</span><span class="se"></span>    --mysql-conf <span class="nv">password</span><span class="o">=</span><span class="m">123456</span> <span class="se">\
+</span><span class="se"></span>    --mysql-conf database-name<span class="o">=</span>source_db <span class="se">\
+</span><span class="se"></span>    --catalog-conf <span class="nv">metastore</span><span class="o">=</span>hive <span class="se">\
+</span><span class="se"></span>    --catalog-conf <span class="nv">uri</span><span class="o">=</span>thrift://hive-metastore:9083 <span class="se">\
+</span><span class="se"></span>    --table-conf <span class="nv">bucket</span><span class="o">=</span><span class="m">4</span> <span class="se">\
+</span><span class="se"></span>    --table-conf changelog-producer<span class="o">=</span>input <span class="se">\
+</span><span class="se"></span>    --table-conf sink.parallelism<span class="o">=</span><span class="m">4</span>
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/incubator-paimon/edit/0.4/docs/content/how-to/cdc-ingestion.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#mysql">MySQL</a>
+      <ul>
+        <li><a href="#prepare-cdc-bundled-jar">Prepare CDC Bundled Jar</a></li>
+        <li><a href="#synchronizing-tables">Synchronizing Tables</a></li>
+        <li><a href="#synchronizing-databases">Synchronizing Databases</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
