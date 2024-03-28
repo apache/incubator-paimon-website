@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lookup Joins #  Lookup Joins are a type of join in streaming queries. It is used to enrich a table with data that is queried from Table Store. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.
+Table Store supports lookup joins on unpartitioned tables with primary keys in Flink. The following example illustrates this feature.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Lookup Joins" />
+<meta property="og:description" content="Lookup Joins #  Lookup Joins are a type of join in streaming queries. It is used to enrich a table with data that is queried from Table Store. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.
+Table Store supports lookup joins on unpartitioned tables with primary keys in Flink. The following example illustrates this feature." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//paimon.apache.org/docs/master/docs/how-to/lookup-joins/" />
+
+<title>Lookup Joins | Apache Paimon</title>
+<link rel="manifest" href="/docs/master/manifest.json">
+<link rel="icon" href="/docs/master/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/docs/master/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/docs/master/en.search.min.743b6032819931a839421ee33f506263c33cad2be39186e2bd8a333c09ba2bed.js" integrity="sha256-dDtgMoGZMag5Qh7jP1BiY8M8rSvjkYbivYozPAm6K&#43;0="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//paimon.apache.org/docs/master/font-awesome/css/font-awesome.min.css">
+<script src="//paimon.apache.org/docs/master/js/anchor.min.js"></script>
+<script src="//paimon.apache.org/docs/master/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//paimon.apache.org/docs/master">
+    <h3>Apache Paimon</h3>
+</a>
+<p style="text-align:right">0.4-SNAPSHOT</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-6c07f7e07850a28420f21d62041fba0d" class="toggle"  />
+    <label for="section-6c07f7e07850a28420f21d62041fba0d" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/primary-key-table/" class="">Primary Key Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/append-only-table/" class="">Append Only Table</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/concepts/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="toggle"  />
+    <label for="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/spark3/" class="">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f2a11ba4196b33034e80bb68b108033e" class="toggle"  />
+    <label for="section-f2a11ba4196b33034e80bb68b108033e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-9158e11b187116611eb1a3ed1d21db1e" class="toggle" checked />
+    <label for="section-9158e11b187116611eb1a3ed1d21db1e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/how-to/lookup-joins/" class=" active">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="toggle"  />
+    <label for="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//paimon.apache.org/docs/master/docs/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//paimon.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//paimon.apache.org/docs/master/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//paimon.apache.org/docs/master">
+      0.4-SNAPSHOT (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://paimon.apache.org/docs/master">
+          master
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://paimon.apache.org/docs/latest">
+          latest
+        </a>
+      </li>
+    
+      <li>
+        <a href="https://paimon.apache.org/docs/0.3">
+          0.3
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//paimon.apache.org/docs/master/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/docs/master/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Lookup Joins</strong>
+
+  <label for="toc-control">
+    
+    <img src="/docs/master/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#rocksdb-cache-options">RocksDB Cache Options</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+<article class="markdown">
+    <blockquote style="border-color:#f66">
+        This documentation is for an unreleased version of Apache Flink Table Store. We recommend you use the latest <a href="https://ci.apache.org/projects/flink/flink-table-store-docs-stable/">stable version</a>.
+    </blockquote>
+</article>
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="lookup-joins">
+  Lookup Joins
+  <a class="anchor" href="#lookup-joins">#</a>
+</h1>
+<p><a href="https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/queries/joins/">Lookup Joins</a> are a type of join in streaming queries. It is used to enrich a table with data that is queried from Table Store. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.</p>
+<p>Table Store supports lookup joins on unpartitioned tables with primary keys in Flink. The following example illustrates this feature.</p>
+<p>First, let&rsquo;s create a Table Store table and update it in real-time.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- Create a table store catalog
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">CATALOG</span> <span class="n">my_catalog</span> <span class="k">WITH</span> <span class="p">(</span>
+  <span class="s1">&#39;type&#39;</span><span class="o">=</span><span class="s1">&#39;table-store&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;warehouse&#39;</span><span class="o">=</span><span class="s1">&#39;hdfs://nn:8020/warehouse/path&#39;</span> <span class="c1">-- or &#39;file://tmp/foo/bar&#39;
+</span><span class="c1"></span><span class="p">);</span>
+
+<span class="n">USE</span> <span class="k">CATALOG</span> <span class="n">my_catalog</span><span class="p">;</span>
+
+<span class="c1">-- Create a table in table-store catalog
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">customers</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">INT</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="k">NOT</span> <span class="n">ENFORCED</span><span class="p">,</span>
+    <span class="n">name</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">country</span> <span class="n">STRING</span><span class="p">,</span>
+    <span class="n">zip</span> <span class="n">STRING</span>
+<span class="p">);</span>
+
+<span class="c1">-- Launch a streaming job to update customers table
+</span><span class="c1"></span><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">customers</span> <span class="p">...</span>
+
+<span class="c1">-- Create a temporary left table, like from kafka
+</span><span class="c1"></span><span class="k">CREATE</span> <span class="k">TEMPORARY</span> <span class="k">TABLE</span> <span class="n">Orders</span> <span class="p">(</span>
+    <span class="n">order_id</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">total</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">customer_id</span> <span class="nb">INT</span><span class="p">,</span>
+    <span class="n">proc_time</span> <span class="k">AS</span> <span class="n">PROCTIME</span><span class="p">()</span>
+<span class="p">)</span> <span class="k">WITH</span> <span class="p">(</span>
+    <span class="s1">&#39;connector&#39;</span> <span class="o">=</span> <span class="s1">&#39;kafka&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;topic&#39;</span> <span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;properties.bootstrap.servers&#39;</span> <span class="o">=</span> <span class="s1">&#39;...&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;format&#39;</span> <span class="o">=</span> <span class="s1">&#39;csv&#39;</span>
+    <span class="p">...</span>
+<span class="p">);</span>
+</code></pre></div><p>You can now use <code>customers</code> in a lookup join query.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- enrich each order with customer information
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">total</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">country</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">zip</span>
+<span class="k">FROM</span> <span class="n">Orders</span> <span class="k">AS</span> <span class="n">o</span>
+<span class="k">JOIN</span> <span class="n">customers</span>
+<span class="k">FOR</span> <span class="n">SYSTEM_TIME</span> <span class="k">AS</span> <span class="k">OF</span> <span class="n">o</span><span class="p">.</span><span class="n">proc_time</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">ON</span> <span class="n">o</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div><p>The lookup join operator will maintain a RocksDB cache locally and pull the latest updates of the table in real time. Lookup join operator will only pull the necessary data, so your filter conditions are very important for performance.</p>
+<p>This feature is only suitable for tables containing at most tens of millions of records to avoid excessive use of local disks.</p>
+<blockquote class="book-hint info">
+  If the records of <code>Orders</code> (main table) join missing because the corresponding data of <code>customers</code> (lookup table) is not ready.
+You can consider using Flink&rsquo;s <a href="https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/sql/queries/hints/#3-enable-delayed-retry-strategy-for-lookup">Delayed Retry Strategy For Lookup</a>.
+</blockquote>
+
+<h2 id="rocksdb-cache-options">
+  RocksDB Cache Options
+  <a class="anchor" href="#rocksdb-cache-options">#</a>
+</h2>
+<p>The following options allow users to finely adjust RocksDB for better performance. You can either specify them in table properties or in dynamic table hints.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="c1">-- dynamic table hints example
+</span><span class="c1"></span><span class="k">SELECT</span> <span class="n">o</span><span class="p">.</span><span class="n">order_id</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="n">total</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">country</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">zip</span>
+<span class="k">FROM</span> <span class="n">Orders</span> <span class="k">AS</span> <span class="n">o</span> <span class="k">JOIN</span> <span class="n">customers</span> <span class="cm">/*+ OPTIONS(&#39;lookup.cache-rows&#39;=&#39;20000&#39;) */</span>
+<span class="k">FOR</span> <span class="n">SYSTEM_TIME</span> <span class="k">AS</span> <span class="k">OF</span> <span class="n">o</span><span class="p">.</span><span class="n">proc_time</span> <span class="k">AS</span> <span class="k">c</span>
+<span class="k">ON</span> <span class="n">o</span><span class="p">.</span><span class="n">customer_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</code></pre></div><table class="configuration table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-left" style="width: 20%">Key</th>
+            <th class="text-left" style="width: 15%">Default</th>
+            <th class="text-left" style="width: 10%">Type</th>
+            <th class="text-left" style="width: 55%">Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><h5>lookup.cache-rows</h5></td>
+            <td style="word-wrap: break-word;">10000</td>
+            <td>Long</td>
+            <td>The maximum number of rows to store in the cache.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.block.blocksize</h5></td>
+            <td style="word-wrap: break-word;">4 kb</td>
+            <td>MemorySize</td>
+            <td>The approximate size (in bytes) of user data packed per block. The default blocksize is '4KB'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.block.cache-size</h5></td>
+            <td style="word-wrap: break-word;">8 mb</td>
+            <td>MemorySize</td>
+            <td>The amount of the cache for data blocks in RocksDB. The default block-cache size is '8MB'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.block.metadata-blocksize</h5></td>
+            <td style="word-wrap: break-word;">4 kb</td>
+            <td>MemorySize</td>
+            <td>Approximate size of partitioned metadata packed per block. Currently applied to indexes block when partitioned index/filters option is enabled. The default blocksize is '4KB'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.bloom-filter.bits-per-key</h5></td>
+            <td style="word-wrap: break-word;">10.0</td>
+            <td>Double</td>
+            <td>Bits per key that bloom filter will use, this only take effect when bloom filter is used. The default value is 10.0.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.bloom-filter.block-based-mode</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>If true, RocksDB will use block-based filter instead of full filter, this only take effect when bloom filter is used. The default value is 'false'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.compaction.level.max-size-level-base</h5></td>
+            <td style="word-wrap: break-word;">256 mb</td>
+            <td>MemorySize</td>
+            <td>The upper-bound of the total size of level base files in bytes. The default value is '256MB'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.compaction.level.target-file-size-base</h5></td>
+            <td style="word-wrap: break-word;">64 mb</td>
+            <td>MemorySize</td>
+            <td>The target file size for compaction, which determines a level-1 file size. The default value is '64MB'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.compaction.level.use-dynamic-size</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>If true, RocksDB will pick target size of each level dynamically. From an empty DB, RocksDB would make last level the base level, which means merging L0 data into the last level, until it exceeds max_bytes_for_level_base. And then repeat this process for second last level and so on. The default value is 'false'. For more information, please refer to <a href="https://github.com/facebook/rocksdb/wiki/Leveled-Compaction#level_compaction_dynamic_level_bytes-is-true">RocksDB's doc.</a></td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.compaction.style</h5></td>
+            <td style="word-wrap: break-word;">LEVEL</td>
+            <td><p>Enum</p></td>
+            <td>The specified compaction style for DB. Candidate compaction style is LEVEL, FIFO, UNIVERSAL or NONE, and Flink chooses 'LEVEL' as default style.<br /><br />Possible values:<ul><li>"LEVEL"</li><li>"UNIVERSAL"</li><li>"FIFO"</li><li>"NONE"</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.compression.type</h5></td>
+            <td style="word-wrap: break-word;">LZ4_COMPRESSION</td>
+            <td><p>Enum</p></td>
+            <td>The compression type.<br /><br />Possible values:<ul><li>"NO_COMPRESSION"</li><li>"SNAPPY_COMPRESSION"</li><li>"ZLIB_COMPRESSION"</li><li>"BZLIB2_COMPRESSION"</li><li>"LZ4_COMPRESSION"</li><li>"LZ4HC_COMPRESSION"</li><li>"XPRESS_COMPRESSION"</li><li>"ZSTD_COMPRESSION"</li><li>"DISABLE_COMPRESSION_OPTION"</li></ul></td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.files.open</h5></td>
+            <td style="word-wrap: break-word;">-1</td>
+            <td>Integer</td>
+            <td>The maximum number of open files (per stateful operator) that can be used by the DB, '-1' means no limit. The default value is '-1'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.thread.num</h5></td>
+            <td style="word-wrap: break-word;">2</td>
+            <td>Integer</td>
+            <td>The maximum number of concurrent background flush and compaction jobs (per stateful operator). The default value is '2'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.use-bloom-filter</h5></td>
+            <td style="word-wrap: break-word;">false</td>
+            <td>Boolean</td>
+            <td>If true, every newly created SST file will contain a Bloom filter. It is disabled by default.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.writebuffer.count</h5></td>
+            <td style="word-wrap: break-word;">2</td>
+            <td>Integer</td>
+            <td>The maximum number of write buffers that are built up in memory. The default value is '2'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.writebuffer.number-to-merge</h5></td>
+            <td style="word-wrap: break-word;">1</td>
+            <td>Integer</td>
+            <td>The minimum number of write buffers that will be merged together before writing to storage. The default value is '1'.</td>
+        </tr>
+        <tr>
+            <td><h5>rocksdb.writebuffer.size</h5></td>
+            <td style="word-wrap: break-word;">64 mb</td>
+            <td>MemorySize</td>
+            <td>The amount of data built up in memory (backed by an unsorted log on disk) before converting to a sorted on-disk files. The default writebuffer size is '64MB'.</td>
+        </tr>
+    </tbody>
+</table>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/incubator-paimon/edit/master/docs/content/docs/how-to/lookup-joins.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#rocksdb-cache-options">RocksDB Cache Options</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

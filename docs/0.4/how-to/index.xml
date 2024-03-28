@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>How to on Apache Paimon</title>
+    <link>//paimon.apache.org/docs/0.4/how-to/</link>
+    <description>Recent content in How to on Apache Paimon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//paimon.apache.org/docs/0.4/how-to/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating Catalogs</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/creating-catalogs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/creating-catalogs/</guid>
+      <description>Creating Catalogs #  Paimon catalogs currently support two types of metastores:
+ filesystem metastore (default), which stores both metadata and table files in filesystems. hive metastore, which additionally stores metadata in Hive metastore. Users can directly access the tables from Hive.  See CatalogOptions for detailed options when creating a catalog.
+Creating a Catalog with Filesystem Metastore #  Flink The following Flink SQL registers and uses a Paimon catalog named my_catalog.</description>
+    </item>
+    
+    <item>
+      <title>Creating Tables</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/creating-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/creating-tables/</guid>
+      <description>Creating Tables #  Creating Catalog Managed Tables #  Tables created in Paimon catalogs are managed by the catalog. When the table is dropped from catalog, its table files will also be deleted.
+The following SQL assumes that you have registered and are using a Paimon catalog. It creates a managed table named MyTable with five columns in the catalog&amp;rsquo;s default database, where dt, hh and user_id are the primary keys.</description>
+    </item>
+    
+    <item>
+      <title>Altering Tables</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/altering-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/altering-tables/</guid>
+      <description>Altering Tables #  Changing/Adding Table Properties #  The following SQL sets write-buffer-size table property to 256 MB.
+Flink ALTER TABLE my_table SET ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; ); Spark3 ALTER TABLE my_table SET TBLPROPERTIES ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; );  Rename Table Name #  The following SQL rename the table name to new name.
+Flink ALTER TABLE my_table RENAME TO my_table_new; Spark3 ALTER TABLE my_table RENAME TO my_table_new;  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure.</description>
+    </item>
+    
+    <item>
+      <title>Writing Tables</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/writing-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/writing-tables/</guid>
+      <description>Writing Tables #  You can use the INSERT statement to inserts new rows into a table or overwrites the existing data in the table. The inserted rows can be specified by value expressions or result from a query.
+Syntax #  INSERT { INTO | OVERWRITE } table_identifier [ part_spec ] [ column_list ] { value_expr | query }   part_spec
+An optional parameter that specifies a comma-separated list of key and value pairs for partitions.</description>
+    </item>
+    
+    <item>
+      <title>Querying Tables</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/querying-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/querying-tables/</guid>
+      <description>Querying Tables #  Just like all other tables, Paimon tables can be queried with SELECT statement.
+Scan Mode #  By specifying the scan.mode table property, users can specify where and how Paimon sources should produce records.
+  Scan Mode Batch Source Behavior Streaming Source Behavior     default The default scan mode. Determines actual scan mode according to other table properties. If &#34;scan.timestamp-millis&#34; is set the actual scan mode will be &#34;</description>
+    </item>
+    
+    <item>
+      <title>Lookup Joins</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/lookup-joins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/lookup-joins/</guid>
+      <description>Lookup Joins #  Lookup Joins are a type of join in streaming queries. It is used to enrich a table with data that is queried from Paimon. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.
+Paimon supports lookup joins on tables with primary keys in Flink. The following example illustrates this feature.
+First, let&amp;rsquo;s create a Paimon table and update it in real-time.</description>
+    </item>
+    
+    <item>
+      <title>CDC Ingestion</title>
+      <link>//paimon.apache.org/docs/0.4/how-to/cdc-ingestion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/how-to/cdc-ingestion/</guid>
+      <description>CDC Ingestion #  Paimon supports synchronizing changes from different databases using change data capture (CDC). This feature requires Flink and its CDC connectors.
+MySQL #  Prepare CDC Bundled Jar #  flink-sql-connector-mysql-cdc-*.jar Synchronizing Tables #  By using MySqlSyncTableAction in a Flink DataStream job or directly through flink run, users can synchronize one or multiple tables from MySQL into one Paimon table.
+To use this feature through flink run, run the following shell command.</description>
+    </item>
+    
+  </channel>
+</rss>

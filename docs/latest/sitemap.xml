@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions/</loc>
+  </url>
+  
+</urlset>

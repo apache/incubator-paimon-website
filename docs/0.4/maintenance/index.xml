@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maintenance on Apache Paimon</title>
+    <link>//paimon.apache.org/docs/0.4/maintenance/</link>
+    <description>Recent content in Maintenance on Apache Paimon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//paimon.apache.org/docs/0.4/maintenance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Write Performance</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/write-performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/write-performance/</guid>
+      <description>Write Performance #  Performance of Paimon writers are related with the following factors.
+Parallelism #  It is recommended that the parallelism of sink should be less than or equal to the number of buckets, preferably equal. You can control the parallelism of the sink with the sink.parallelism table property.
+  Option Required Default Type Description     sink.parallelism No (none) Integer Defines the parallelism of the sink operator.</description>
+    </item>
+    
+    <item>
+      <title>Read Performance</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/read-performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/read-performance/</guid>
+      <description>Read Performance #  Full Compaction #  Configure &amp;lsquo;full-compaction.delta-commits&amp;rsquo; perform full-compaction periodically in Flink writing. And it can ensure that partitions are full compacted before writing ends.
+It is not recommended to set a value that exceeds the snapshot expiration time (default 1 hour). For example, if your checkpoint interval is 1 minute, it is recommended to set the &amp;lsquo;full-compaction.delta-commits&amp;rsquo; to 30.
+Primary Key Table #  For Primary Key Table, it&amp;rsquo;s a &amp;lsquo;MergeOnRead&amp;rsquo; technology.</description>
+    </item>
+    
+    <item>
+      <title>Expiring Snapshots</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/expiring-snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/expiring-snapshots/</guid>
+      <description>Expiring Snapshots #  Paimon writers generates one or two snapshots per commit. Each snapshot may add some new data files or mark some old data files as deleted. However, the marked data files are not truly deleted because Paimon also supports time traveling to an earlier snapshot. They are only deleted when the snapshot expires.
+Currently, expiration is automatically performed by Paimon writers when committing new changes. By expiring old snapshots, old data files and metadata files that are no longer used can be deleted to release disk space.</description>
+    </item>
+    
+    <item>
+      <title>Rescale Bucket</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/rescale-bucket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/rescale-bucket/</guid>
+      <description>Rescale Bucket #  Since the number of total buckets dramatically influences the performance, Paimon allows users to tune bucket numbers by ALTER TABLE command and reorganize data layout by INSERT OVERWRITE without recreating the table/partition. When executing overwrite jobs, the framework will automatically scan the data with the old bucket number and hash the record according to the current bucket number.
+Rescale Overwrite #  -- rescale number of total buckets ALTER TABLE table_identifier SET (&amp;#39;bucket&amp;#39; = &amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Manage Partition</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/manage-partition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/manage-partition/</guid>
+      <description>Expiring Partitions #  You can set partition.expiration-time when creating a partitioned table. Paimon will periodically check the status of partitions and delete expired partitions according to time.
+How to determine whether a partition has expired: compare the time extracted from the partition with the current time to see if survival time has exceeded the partition.expiration-time.
+An example:
+CREATE TABLE T (...) PARTITIONED BY (dt) WITH ( &amp;#39;partition.expiration-time&amp;#39; = &amp;#39;7 d&amp;#39;, &amp;#39;partition.</description>
+    </item>
+    
+    <item>
+      <title>Configurations</title>
+      <link>//paimon.apache.org/docs/0.4/maintenance/configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//paimon.apache.org/docs/0.4/maintenance/configurations/</guid>
+      <description>Configuration #  CoreOptions #  Core options for paimon.
+  Key Default Type Description     auto-create false Boolean Whether to create underlying storage when reading and writing the table.   bucket 1 Integer Bucket number for file store.   bucket-key (none) String Specify the paimon distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.
+If you specify multiple fields, delimiter is &#39;,&#39;.</description>
+    </item>
+    
+  </channel>
+</rss>

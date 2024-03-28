@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+<html lang="en" dir=>
+
+<head>
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Spark3 #  This documentation is a guide for using Table Store in Spark3.
+Preparing Table Store Jar File #  Download flink-table-store-spark-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.
+Build bundled jar with the following command.
+mvn clean install -DskipTests You can find the bundled jar in ./flink-table-store-spark/target/flink-table-store-spark-0.3.0.jar.">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Spark3" />
+<meta property="og:description" content="Spark3 #  This documentation is a guide for using Table Store in Spark3.
+Preparing Table Store Jar File #  Download flink-table-store-spark-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.
+Build bundled jar with the following command.
+mvn clean install -DskipTests You can find the bundled jar in ./flink-table-store-spark/target/flink-table-store-spark-0.3.0.jar." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/" />
+
+<title>Spark3 | Apache Flink Table Store</title>
+<link rel="manifest" href="/flink/flink-table-store-docs-release-0.3/manifest.json">
+<link rel="icon" href="/flink/flink-table-store-docs-release-0.3/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/flink/flink-table-store-docs-release-0.3/book.min.3bc4108a5b57c9a7e6fcae92ff69940435f8c46c4e1e4a311aedc9b2d8e06792.css" integrity="sha256-O8QQiltXyafm/K6S/2mUBDX4xGxOHkoxGu3JstjgZ5I=">
+<script defer src="/flink/flink-table-store-docs-release-0.3/en.search.min.bd2fd37bc7f836c4face92be4fc4fa0e40609bd9198352bf46bbd3a7436e380c.js" integrity="sha256-vS/Te8f4NsT6zpK&#43;T8T6DkBgm9kZg1K/RrvTp0NuOAw="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+
+<link rel="stylesheet" type="text/css" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/font-awesome/css/font-awesome.min.css">
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/anchor.min.js"></script>
+<script src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/js/flink.js"></script>
+
+
+  
+  <script>
+    var _paq = window._paq = window._paq || [];
+     
+     
+    _paq.push(['disableCookies']);
+     
+    _paq.push(["setDomains", ["*.flink.apache.org","*.nightlies.apache.org/flink"]]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//matomo.privacy.apache.org/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '1']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  
+</head>
+
+<body dir=>
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      
+  
+
+<nav>
+
+
+<a id="logo" href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+    <img width="70%" src="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/navbar-brand-logo.jpg">
+</a>
+<p style="text-align:right">v0.3.0</p>
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-6c07f7e07850a28420f21d62041fba0d" class="toggle"  />
+    <label for="section-6c07f7e07850a28420f21d62041fba0d" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-book title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Concepts</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/" class="">Basic Concepts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/" class="">File Layouts</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/" class="">LSM Trees</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/" class="">Consistency Guarantees</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="toggle" checked />
+    <label for="section-3c3b30e0c900292dd234d4c3eb6b1d07" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-gear title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Engines</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/" class="">Flink</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/" class=" active">Spark3</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/" class="">Spark2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/" class="">Hive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/" class="">Trino</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-f2a11ba4196b33034e80bb68b108033e" class="toggle"  />
+    <label for="section-f2a11ba4196b33034e80bb68b108033e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-folder title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Filesystems</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/" class="">Overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/" class="">OSS</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/" class="">S3</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-9158e11b187116611eb1a3ed1d21db1e" class="toggle"  />
+    <label for="section-9158e11b187116611eb1a3ed1d21db1e" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-database title maindish" aria-hidden="true"></i>&nbsp;&nbsp;How to</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/" class="">Creating Catalogs</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/" class="">Creating Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/" class="">Altering Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/" class="">Writing Tables</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/" class="">Querying Tables</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-df6d1d7f40d2e224a80f115a5b7830c6" class="toggle"  />
+    <label for="section-df6d1d7f40d2e224a80f115a5b7830c6" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-star title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Features</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/" class="">Table Types</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/" class="">External Log Systems</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/" class="">Lookup Joins</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <input type="checkbox" id="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="toggle"  />
+    <label for="section-80b8422d3b0ecaa05fe471d0cbbb6785" class="flex justify-between"><div style="font-weight:450;margin-bottom:0.5em"><i class="fa fa-wrench title maindish" aria-hidden="true"></i>&nbsp;&nbsp;Maintenance</div><span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/" class="">Write Performance</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/" class="">Expiring Snapshots</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/" class="">Rescale Bucket</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/" class="">Manage Partition</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+  
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/" class="">Configurations</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<hr class="menu-break">
+
+<a href="//flink.apache.org" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> Project Homepage</a>
+<br/>
+
+<a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/api/java/" style="color:black;margin-bottom:0.5em"><i class="link fa fa-external-link title" aria-hidden="true"></i> JavaDocs</a>
+<br/>
+
+<hr class="menu-break">
+<li style="list-style-type: none">
+  <br>
+  <input type="checkbox" id="section-version-picker" class="toggle">
+  <label for="section-version-picker" class="flex justify-between">
+     <div style="font-weight:450;margin-bottom:0.5em">Pick Docs Version</div>
+     <span>▾</span>
+  </label>
+  <ul>
+    <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3">
+      0.3 (✓)
+    </a>
+    <hr class="menu-break">
+    
+      <li>
+        <a href="https://nightlies.apache.org/flink/flink-table-store-docs-release-0.2">
+          v0.2
+        </a>
+      </li>
+    
+    <hr class="menu-break">
+    <li>
+      <a href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions">
+          All Versions
+      </a>
+    </li>
+  </ul>
+</li>
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Spark3</strong>
+
+  <label for="toc-control">
+    
+    <img src="/flink/flink-table-store-docs-release-0.3/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#preparing-table-store-jar-file">Preparing Table Store Jar File</a></li>
+    <li><a href="#quick-start">Quick Start</a></li>
+    <li><a href="#spark-type-conversion">Spark Type Conversion</a></li>
+  </ul>
+</nav>
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+
+
+
+
+
+
+      
+  <article class="markdown"><!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<h1 id="spark3">
+  Spark3
+  <a class="anchor" href="#spark3">#</a>
+</h1>
+<p>This documentation is a guide for using Table Store in Spark3.</p>
+<h2 id="preparing-table-store-jar-file">
+  Preparing Table Store Jar File
+  <a class="anchor" href="#preparing-table-store-jar-file">#</a>
+</h2>
+<p>Download <a href="https://www.apache.org/dyn/closer.lua/flink/flink-table-store-0.3.0/flink-table-store-spark-0.3.0.jar">flink-table-store-spark-0.3.0.jar</a>.</p>
+<p>You can also manually build bundled jar from the source code.</p>
+
+
+<p>To build from source code, either <a href="https://flink.apache.org/downloads.html">download the source of a release</a> or <a href="https://github.com/apache/flink-table-store.git">clone the git repository</a>.</p>
+<p>Build bundled jar with the following command.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mvn clean install -DskipTests
+</code></pre></div><p>You can find the bundled jar in <code>./flink-table-store-spark/target/flink-table-store-spark-0.3.0.jar</code>.</p>
+<h2 id="quick-start">
+  Quick Start
+  <a class="anchor" href="#quick-start">#</a>
+</h2>
+<blockquote class="book-hint info">
+  If you are using HDFS, make sure that the environment variable <code>HADOOP_HOME</code> or <code>HADOOP_CONF_DIR</code> is set.
+</blockquote>
+
+<p><strong>Step 1: Specify Table Store Jar File</strong></p>
+<p>Append path to table store jar file to the <code>--jars</code> argument when starting <code>spark-sql</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">spark-sql ... --jars /path/to/flink-table-store-spark-0.3.0.jar
+</code></pre></div><p>Alternatively, you can copy <code>flink-table-store-spark-0.3.0.jar</code> under <code>spark/jars</code> in your Spark installation directory.</p>
+<p><strong>Step 2: Specify Table Store Catalog</strong></p>
+<p>When starting <code>spark-sql</code>, use the following command to register Table Store’s Spark catalog with the name <code>tablestore</code>. Table files of the warehouse is stored under <code>/tmp/table_store</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">spark-sql ... <span class="se">\
+</span><span class="se"></span>    --conf spark.sql.catalog.tablestore<span class="o">=</span>org.apache.flink.table.store.spark.SparkCatalog <span class="se">\
+</span><span class="se"></span>    --conf spark.sql.catalog.tablestore.warehouse<span class="o">=</span>file:/tmp/table_store
+</code></pre></div><p>After <code>spark-sql</code> command line has started, run the following SQL to create and switch to database <code>tablestore.default</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="n">tablestore</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+<span class="n">USE</span> <span class="n">tablestore</span><span class="p">.</span><span class="k">default</span><span class="p">;</span>
+</code></pre></div><p><strong>Step 3: Create a table and Write Some Records</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">my_table</span> <span class="p">(</span>
+    <span class="n">k</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">v</span> <span class="n">string</span>
+<span class="p">)</span> <span class="n">tblproperties</span> <span class="p">(</span>
+    <span class="s1">&#39;primary-key&#39;</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+<span class="p">);</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">my_table</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Hi&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;Hello&#39;</span><span class="p">);</span>
+</code></pre></div><p><strong>Step 4: Query Table with SQL</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">my_table</span><span class="p">;</span>
+<span class="cm">/*
+</span><span class="cm">1	Hi
+</span><span class="cm">2	Hello
+</span><span class="cm">*/</span>
+</code></pre></div><p><strong>Step 5: Update the Records</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">my_table</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Hi Again&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;Test&#39;</span><span class="p">);</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">my_table</span><span class="p">;</span>
+<span class="cm">/*
+</span><span class="cm">1	Hi Again
+</span><span class="cm">2	Hello
+</span><span class="cm">3	Test
+</span><span class="cm">*/</span>
+</code></pre></div><p><strong>Step 6: Query Table with Scala API</strong></p>
+<p>If you don&rsquo;t want to use Table Store catalog, you can also run <code>spark-shell</code> and query the table with Scala API.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">spark-shell ... --jars /path/to/flink-table-store-spark-0.3.0.jar
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">dataset</span> <span class="k">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">format</span><span class="o">(</span><span class="s">&#34;tablestore&#34;</span><span class="o">).</span><span class="n">load</span><span class="o">(</span><span class="s">&#34;file:/tmp/table_store/default.db/my_table&#34;</span><span class="o">)</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="o">(</span><span class="s">&#34;my_table&#34;</span><span class="o">)</span>
+<span class="n">spark</span><span class="o">.</span><span class="n">sql</span><span class="o">(</span><span class="s">&#34;SELECT * FROM my_table&#34;</span><span class="o">).</span><span class="n">show</span><span class="o">()</span>
+</code></pre></div><h2 id="spark-type-conversion">
+  Spark Type Conversion
+  <a class="anchor" href="#spark-type-conversion">#</a>
+</h2>
+<p>This section lists all supported type conversion between Spark and Flink.
+All Spark&rsquo;s data types are available in package <code>org.apache.spark.sql.types</code>.</p>
+<table class="table table-bordered">
+    <thead>
+    <tr>
+      <th class="text-left" style="width: 10%">Spark Data Type</th>
+      <th class="text-left" style="width: 10%">Flink Data Type</th>
+      <th class="text-left" style="width: 5%">Atomic Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><code>StructType</code></td>
+      <td><code>RowType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>MapType</code></td>
+      <td><code>MapType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>ArrayType</code></td>
+      <td><code>ArrayType</code></td>
+      <td>false</td>
+    </tr>
+    <tr>
+      <td><code>BooleanType</code></td>
+      <td><code>BooleanType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>ByteType</code></td>
+      <td><code>TinyIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>ShortType</code></td>
+      <td><code>SmallIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>IntegerType</code></td>
+      <td><code>IntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>LongType</code></td>
+      <td><code>BigIntType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>FloatType</code></td>
+      <td><code>FloatType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>DoubleType</code></td>
+      <td><code>DoubleType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>StringType</code></td>
+      <td><code>VarCharType</code>, <code>CharType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>DateType</code></td>
+      <td><code>DateType</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>TimestampType</code></td>
+      <td><code>TimestampType</code>, <code>LocalZonedTimestamp</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>DecimalType(precision, scale)</code></td>
+      <td><code>DecimalType(precision, scale)</code></td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <td><code>BinaryType</code></td>
+      <td><code>VarBinaryType</code>, <code>BinaryType</code></td>
+      <td>true</td>
+    </tr>
+    </tbody>
+</table>
+<blockquote class="book-hint info">
+  <ul>
+<li>Currently, Spark&rsquo;s field comment cannot be described under Flink CLI.</li>
+<li>Conversion between Spark&rsquo;s <code>UserDefinedType</code> and Flink&rsquo;s <code>UserDefinedType</code> is not supported.</li>
+</ul>
+
+</blockquote>
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  
+
+
+
+
+<a href="//github.com/apache/flink-table-store/edit/release-0.3/docs/content/docs/engines/spark3.md" style="color:black"><i class="fa fa-edit fa-fw"></i>Edit This Page</a>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      
+  
+
+<nav id="TableOfContents"><h3>On This Page <button class="toc" onclick="collapseToc()"><i class="fa fa-compress" aria-hidden="true"></i></button></h3>
+  <ul>
+    <li><a href="#preparing-table-store-jar-file">Preparing Table Store Jar File</a></li>
+    <li><a href="#quick-start">Quick Start</a></li>
+    <li><a href="#spark-type-conversion">Spark Type Conversion</a></li>
+  </ul>
+</nav>
+
+ 
+    </aside>
+    <aside class="expand-toc">
+      <button class="toc" onclick="expandToc()">
+        <i class="fa fa-expand" aria-hidden="true"></i>
+      </button>
+    </aside>
+    
+  </main>
+
+  
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Filesystems on Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/</link>
+    <description>Recent content in Filesystems on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/</guid>
+      <description>Overview #  Apache Flink Table Store utilizes the same pluggable file systems as Apache Flink. Users can follow the standard plugin mechanism to configure the plugin structure if using Flink as compute engine. However, for other engines like Spark or Hive, the provided opt jars (by Flink) may get conflicts and cannot be used directly. It is not convenient for users to fix class conflicts, thus Flink Table Store provides the self-contained and engine-unified FileSystem pluggable jars for user to query tables from Spark/Hive side.</description>
+    </item>
+    
+    <item>
+      <title>OSS</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/</guid>
+      <description>OSS #  Download Download flink table store shaded jar for Spark, Hive and Trino. Usage #  Flink Prepare OSS jar, then configure flink-conf.yaml like
+fs.oss.endpoint:oss-cn-hangzhou.aliyuncs.comfs.oss.accessKeyId:xxxfs.oss.accessKeySecret:yyySpark Place flink-table-store-oss-0.3.0.jar together with flink-table-store-spark-0.3.0.jar under Spark&amp;rsquo;s jars directory, and start like
+spark-sql \  --conf spark.sql.catalog.tablestore=org.apache.flink.table.store.spark.SparkCatalog \  --conf spark.sql.catalog.tablestore.warehouse=oss://&amp;lt;bucket-name&amp;gt;/ \  --conf spark.sql.catalog.tablestore.fs.oss.endpoint=oss-cn-hangzhou.aliyuncs.com \  --conf spark.sql.catalog.tablestore.fs.oss.accessKeyId=xxx \  --conf spark.sql.catalog.tablestore.fs.oss.accessKeySecret=yyy Hive NOTE: You need to ensure that Hive metastore can access oss.</description>
+    </item>
+    
+    <item>
+      <title>S3</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/</guid>
+      <description>S3 #  Download Download flink table store shaded jar for Spark, Hive and Trino. Usage #  Flink Prepare S3 jar, then configure flink-conf.yaml like
+s3.endpoint:your-endpoint-hostnames3.access-key:xxxs3.secret-key:yyySpark Place flink-table-store-s3-0.3.0.jar together with flink-table-store-spark-0.3.0.jar under Spark&amp;rsquo;s jars directory, and start like
+spark-sql \  --conf spark.sql.catalog.tablestore=org.apache.flink.table.store.spark.SparkCatalog \  --conf spark.sql.catalog.tablestore.warehouse=s3://&amp;lt;bucket&amp;gt;/&amp;lt;endpoint&amp;gt; \  --conf spark.sql.catalog.tablestore.s3.endpoint=your-endpoint-hostname \  --conf spark.sql.catalog.tablestore.s3.access-key=xxx \  --conf spark.sql.catalog.tablestore.s3.secret-key=yyy Hive NOTE: You need to ensure that Hive metastore can access s3.</description>
+    </item>
+    
+  </channel>
+</rss>

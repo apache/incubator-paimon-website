@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Maintenance on Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/</link>
+    <description>Recent content in Maintenance on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Write Performance</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/</guid>
+      <description>Write Performance #  Performance of Table Store writers are related with the following factors.
+Parallelism #  It is recommended that the parallelism of sink should be less than or equal to the number of buckets, preferably equal. You can control the parallelism of the sink with the sink.parallelism table property.
+  Option Required Default Type Description     sink.parallelism No (none) Integer Defines the parallelism of the sink operator.</description>
+    </item>
+    
+    <item>
+      <title>Expiring Snapshots</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/</guid>
+      <description>Expiring Snapshots #  Table Store writers generates one or two snapshots per commit. Each snapshot may add some new data files or mark some old data files as deleted. However, the marked data files are not truly deleted because Table Store also supports time traveling to an earlier snapshot. They are only deleted when the snapshot expires.
+Currently, expiration is automatically performed by Table Store writers when committing new changes.</description>
+    </item>
+    
+    <item>
+      <title>Rescale Bucket</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/</guid>
+      <description>Rescale Bucket #  Since the number of total buckets dramatically influences the performance, Table Store allows users to tune bucket numbers by ALTER TABLE command and reorganize data layout by INSERT OVERWRITE without recreating the table/partition. When executing overwrite jobs, the framework will automatically scan the data with the old bucket number and hash the record according to the current bucket number.
+Rescale Overwrite #  -- rescale number of total buckets ALTER TABLE table_identifier SET (&amp;#39;bucket&amp;#39; = &amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>Manage Partition</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/</guid>
+      <description>Expiring Partitions #  You can set partition.expiration-time when creating a partitioned table. Table Store will periodically check the status of partitions and delete expired partitions according to time.
+How to determine whether a partition has expired: compare the time extracted from the partition with the current time to see if survival time has exceeded the partition.expiration-time.
+An example:
+CREATE TABLE T (...) PARTITIONED BY (dt) WITH ( &amp;#39;partition.expiration-time&amp;#39; = &amp;#39;7 d&amp;#39;, &amp;#39;partition.</description>
+    </item>
+    
+    <item>
+      <title>Configurations</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/</guid>
+      <description>Configuration #  CoreOptions #  Core options for table store.
+  Key Default Type Description     auto-create false Boolean Whether to create underlying storage when reading and writing the table.   bucket 1 Integer Bucket number for file store.   bucket-key (none) String Specify the table store distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.
+If you specify multiple fields, delimiter is &#39;,&#39;.</description>
+    </item>
+    
+  </channel>
+</rss>

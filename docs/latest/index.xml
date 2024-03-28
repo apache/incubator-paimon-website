@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Apache Flink Table Store</title>
+    <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/</link>
+    <description>Recent content on Apache Flink Table Store</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating Catalogs</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-catalogs/</guid>
+      <description>Creating Catalogs #  Table Store catalogs currently support two types of metastores:
+ filesystem metastore (default), which stores both metadata and table files in filesystems. hive metastore, which additionally stores metadata in Hive metastore. Users can directly access the tables from Hive.  See CatalogOptions for detailed options when creating a catalog.
+Creating a Catalog with Filesystem Metastore #  Flink The following Flink SQL registers and uses a Table Store catalog named my_catalog.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/overview/</guid>
+      <description>Overview #  Flink Table Store is a unified storage to build dynamic tables for both streaming and batch processing in Flink, supporting high-speed data ingestion and timely data query.
+Architecture #  As shown in the architecture above:
+Read/Write: Table Store supports a versatile way to read/write data and perform OLAP queries.
+ For reads, it supports consuming data  from historical snapshots (in batch mode), from the latest offset (in streaming mode), or reading incremental snapshots in a hybrid way.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/overview/</guid>
+      <description>Overview #  Table Store not only supports Flink SQL writes and queries natively, but also provides queries from other popular engines, such as Apache Spark and Apache Hive.
+Compatibility Matrix #     Engine Version Feature Read Pushdown     Flink 1.16/1.15/1.14 batch/streaming read, batch/streaming write, create/drop table, create/drop database Projection, Filter   Hive 3.1/2.3/2.2/2.1/2.1 CDH 6.3 batch read Projection, Filter   Spark 3.</description>
+    </item>
+    
+    <item>
+      <title>Overview</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/overview/</guid>
+      <description>Overview #  Apache Flink Table Store utilizes the same pluggable file systems as Apache Flink. Users can follow the standard plugin mechanism to configure the plugin structure if using Flink as compute engine. However, for other engines like Spark or Hive, the provided opt jars (by Flink) may get conflicts and cannot be used directly. It is not convenient for users to fix class conflicts, thus Flink Table Store provides the self-contained and engine-unified FileSystem pluggable jars for user to query tables from Spark/Hive side.</description>
+    </item>
+    
+    <item>
+      <title>Table Types</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/table-types/</guid>
+      <description>Table Types #  Table Store supports various types of tables. Users can specify write-mode table property to specify table types when creating tables.
+Changelog Tables with Primary Keys #  Changelog table is the default table type when creating a table. Users can insert, update or delete records in the table.
+Primary keys are a set of columns that are unique for each record. Table Store imposes an ordering of data, which means the system will sort the primary key within each bucket.</description>
+    </item>
+    
+    <item>
+      <title>Write Performance</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/write-performance/</guid>
+      <description>Write Performance #  Performance of Table Store writers are related with the following factors.
+Parallelism #  It is recommended that the parallelism of sink should be less than or equal to the number of buckets, preferably equal. You can control the parallelism of the sink with the sink.parallelism table property.
+  Option Required Default Type Description     sink.parallelism No (none) Integer Defines the parallelism of the sink operator.</description>
+    </item>
+    
+    <item>
+      <title>Basic Concepts</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/basic-concepts/</guid>
+      <description>Basic Concepts #  Snapshot #  A snapshot captures the state of a table at some point in time. Users can access the latest data of a table through the latest snapshot. By time traveling, users can also access the previous state of a table through an earlier snapshot.
+Partition #  Table Store adopts the same partitioning concept as Apache Hive to separate data.
+Partitioning is an optional way of dividing a table into related parts based on the values of particular columns like date, city, and department.</description>
+    </item>
+    
+    <item>
+      <title>Creating Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/creating-tables/</guid>
+      <description>Creating Tables #  Creating Catalog Managed Tables #  Tables created in Table Store catalogs are managed by the catalog. When the table is dropped from catalog, its table files will also be deleted.
+The following SQL assumes that you have registered and are using a Table Store catalog. It creates a managed table named MyTable with five columns in the catalog&amp;rsquo;s default database, where dt, hh and user_id are the primary keys.</description>
+    </item>
+    
+    <item>
+      <title>Expiring Snapshots</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/expiring-snapshots/</guid>
+      <description>Expiring Snapshots #  Table Store writers generates one or two snapshots per commit. Each snapshot may add some new data files or mark some old data files as deleted. However, the marked data files are not truly deleted because Table Store also supports time traveling to an earlier snapshot. They are only deleted when the snapshot expires.
+Currently, expiration is automatically performed by Table Store writers when committing new changes.</description>
+    </item>
+    
+    <item>
+      <title>External Log Systems</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/external-log-systems/</guid>
+      <description>External Log Systems #  Aside from underlying table files, changelog of Table Store can also be stored into or consumed from an external log system, such as Kafka. By specifying log.system table property, users can choose which external log system to use.
+If an external log system is used, all records written into table files will also be written into the log system. Changes produced by the streaming queries will thus come from the log system instead of table files.</description>
+    </item>
+    
+    <item>
+      <title>Flink</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/flink/</guid>
+      <description>Flink #  This documentation is a guide for using Table Store in Flink.
+Preparing Table Store Jar File #  Table Store currently supports Flink 1.16, 1.15 and 1.14. We recommend the latest Flink version for a better experience.
+Download the jar file with corresponding version.
+   Version Jar     Flink 1.16 flink-table-store-dist-0.3.0.jar   Flink 1.15 flink-table-store-dist-0.3.0_1.15.jar   Flink 1.14 flink-table-store-dist-0.3.0_1.14.jar    You can also manually build bundled jar from the source code.</description>
+    </item>
+    
+    <item>
+      <title>OSS</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/oss/</guid>
+      <description>OSS #  Download Download flink table store shaded jar for Spark, Hive and Trino. Usage #  Flink Prepare OSS jar, then configure flink-conf.yaml like
+fs.oss.endpoint:oss-cn-hangzhou.aliyuncs.comfs.oss.accessKeyId:xxxfs.oss.accessKeySecret:yyySpark Place flink-table-store-oss-0.3.0.jar together with flink-table-store-spark-0.3.0.jar under Spark&amp;rsquo;s jars directory, and start like
+spark-sql \  --conf spark.sql.catalog.tablestore=org.apache.flink.table.store.spark.SparkCatalog \  --conf spark.sql.catalog.tablestore.warehouse=oss://&amp;lt;bucket-name&amp;gt;/ \  --conf spark.sql.catalog.tablestore.fs.oss.endpoint=oss-cn-hangzhou.aliyuncs.com \  --conf spark.sql.catalog.tablestore.fs.oss.accessKeyId=xxx \  --conf spark.sql.catalog.tablestore.fs.oss.accessKeySecret=yyy Hive NOTE: You need to ensure that Hive metastore can access oss.</description>
+    </item>
+    
+    <item>
+      <title>Altering Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/altering-tables/</guid>
+      <description>Altering Tables #  Changing/Adding Table Properties #  The following SQL sets write-buffer-size table property to 256 MB.
+Flink ALTER TABLE my_table SET ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; ); Spark3 ALTER TABLE my_table SET TBLPROPERTIES ( &amp;#39;write-buffer-size&amp;#39; = &amp;#39;256 MB&amp;#39; );  Rename Table Name #  The following SQL rename the table name to new name.
+Flink ALTER TABLE my_table RENAME TO my_table_new; Spark3 ALTER TABLE my_table RENAME TO my_table_new;  If you use object storage, such as S3 or OSS, please use this syntax carefully, because the renaming of object storage is not atomic, and only partial files may be moved in case of failure.</description>
+    </item>
+    
+    <item>
+      <title>File Layouts</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/file-layouts/</guid>
+      <description>File Layouts #  All files of a table are stored under one base directory. Table Store files are organized in a layered style. The following image illustrates the file layout. Starting from a snapshot file, Table Store readers can recursively access all records from the table.
+Snapshot Files #  All snapshot files are stored in the snapshot directory.
+A snapshot file is a JSON file containing information about this snapshot, including</description>
+    </item>
+    
+    <item>
+      <title>Lookup Joins</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/features/lookup-joins/</guid>
+      <description>Lookup Joins #  Lookup Joins are a type of join in streaming queries. It is used to enrich a table with data that is queried from Table Store. The join requires one table to have a processing time attribute and the other table to be backed by a lookup source connector.
+Table Store supports lookup joins on unpartitioned tables with primary keys in Flink. The following example illustrates this feature.</description>
+    </item>
+    
+    <item>
+      <title>Rescale Bucket</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/rescale-bucket/</guid>
+      <description>Rescale Bucket #  Since the number of total buckets dramatically influences the performance, Table Store allows users to tune bucket numbers by ALTER TABLE command and reorganize data layout by INSERT OVERWRITE without recreating the table/partition. When executing overwrite jobs, the framework will automatically scan the data with the old bucket number and hash the record according to the current bucket number.
+Rescale Overwrite #  -- rescale number of total buckets ALTER TABLE table_identifier SET (&amp;#39;bucket&amp;#39; = &amp;#39;.</description>
+    </item>
+    
+    <item>
+      <title>S3</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/filesystems/s3/</guid>
+      <description>S3 #  Download Download flink table store shaded jar for Spark, Hive and Trino. Usage #  Flink Prepare S3 jar, then configure flink-conf.yaml like
+s3.endpoint:your-endpoint-hostnames3.access-key:xxxs3.secret-key:yyySpark Place flink-table-store-s3-0.3.0.jar together with flink-table-store-spark-0.3.0.jar under Spark&amp;rsquo;s jars directory, and start like
+spark-sql \  --conf spark.sql.catalog.tablestore=org.apache.flink.table.store.spark.SparkCatalog \  --conf spark.sql.catalog.tablestore.warehouse=s3://&amp;lt;bucket&amp;gt;/&amp;lt;endpoint&amp;gt; \  --conf spark.sql.catalog.tablestore.s3.endpoint=your-endpoint-hostname \  --conf spark.sql.catalog.tablestore.s3.access-key=xxx \  --conf spark.sql.catalog.tablestore.s3.secret-key=yyy Hive NOTE: You need to ensure that Hive metastore can access s3.</description>
+    </item>
+    
+    <item>
+      <title>Spark3</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark3/</guid>
+      <description>Spark3 #  This documentation is a guide for using Table Store in Spark3.
+Preparing Table Store Jar File #  Download flink-table-store-spark-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.
+Build bundled jar with the following command.
+mvn clean install -DskipTests You can find the bundled jar in ./flink-table-store-spark/target/flink-table-store-spark-0.3.0.jar.</description>
+    </item>
+    
+    <item>
+      <title>LSM Trees</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/lsm-trees/</guid>
+      <description>LSM Trees #  Table Store adapts the LSM tree (log-structured merge-tree) as the data structure for file storage. This documentation breifly introduces the concepts about LSM trees.
+Sorted Runs #  LSM tree organizes files into several sorted runs. A sorted run consists of one or multiple data files and each data file belongs to exactly one sorted run.
+Records within a data file are sorted by their primary keys.</description>
+    </item>
+    
+    <item>
+      <title>Manage Partition</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/manage-partition/</guid>
+      <description>Expiring Partitions #  You can set partition.expiration-time when creating a partitioned table. Table Store will periodically check the status of partitions and delete expired partitions according to time.
+How to determine whether a partition has expired: compare the time extracted from the partition with the current time to see if survival time has exceeded the partition.expiration-time.
+An example:
+CREATE TABLE T (...) PARTITIONED BY (dt) WITH ( &amp;#39;partition.expiration-time&amp;#39; = &amp;#39;7 d&amp;#39;, &amp;#39;partition.</description>
+    </item>
+    
+    <item>
+      <title>Spark2</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/spark2/</guid>
+      <description>Spark2 #  This documentation is a guide for using Table Store in Spark2.
+Version #  Table Store supports Spark 2.4+. It is highly recommended to use Spark 2.4+ version with many improvements.
+Preparing Table Store Jar File #  Download flink-table-store-spark2-0.3.0.jar.
+You can also manually build bundled jar from the source code.
+To build from source code, either download the source of a release or clone the git repository.</description>
+    </item>
+    
+    <item>
+      <title>Writing Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/writing-tables/</guid>
+      <description>Writing Tables #  You can use the INSERT statement to inserts new rows into a table or overwrites the existing data in the table. The inserted rows can be specified by value expressions or result from a query.
+Syntax #  INSERT { INTO | OVERWRITE } table_identifier [ part_spec ] [ column_list ] { value_expr | query }   part_spec
+An optional parameter that specifies a comma-separated list of key and value pairs for partitions.</description>
+    </item>
+    
+    <item>
+      <title>Consistency Guarantees</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/concepts/consistency-guarantees/</guid>
+      <description>Consistency Guarantees #  Table Store writers uses two-phase commit protocol to atomically commit a batch of records to the table. Each commit produces at most two snapshots at commit time.
+For any two writers modifying a table at the same time, as long as they do not modify the same bucket, their commits are serializable. If they modify the same bucket, only snapshot isolation is guaranteed. That is, the final table state may be a mix of the two commits, but no changes are lost.</description>
+    </item>
+    
+    <item>
+      <title>Hive</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/hive/</guid>
+      <description>Hive #  This documentation is a guide for using Table Store in Hive.
+Version #  Table Store currently supports Hive 2.1, 2.2, 2.3 and 3.1.
+Execution Engine #  Table Store currently supports MR and Tez execution engine for Hive.
+Installation #  Download the jar file with corresponding version.
+    Jar     Hive 3.1 flink-table-store-hive-connector-0.3.0_3.1.jar   Hive 2.3 flink-table-store-hive-connector-0.3.0_2.3.jar   Hive 2.</description>
+    </item>
+    
+    <item>
+      <title>Querying Tables</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/how-to/querying-tables/</guid>
+      <description>Querying Tables #  Just like all other tables, Table Store tables can be queried with SELECT statement.
+Scan Mode #  By specifying the scan.mode table property, users can specify where and how Table Store sources should produce records.
+  Scan Mode Batch Source Behavior Streaming Source Behavior     default The default scan mode. Determines actual scan mode according to other table properties. If &#34;scan.timestamp-millis&#34; is set the actual scan mode will be &#34;</description>
+    </item>
+    
+    <item>
+      <title>Trino</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/engines/trino/</guid>
+      <description>Trino #  Because Trino&amp;rsquo;s dependency is JDK 11, it is not possible to include the trino connector in flink-table-store.
+See flink-table-store-trino.</description>
+    </item>
+    
+    <item>
+      <title>Configurations</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/docs/maintenance/configurations/</guid>
+      <description>Configuration #  CoreOptions #  Core options for table store.
+  Key Default Type Description     auto-create false Boolean Whether to create underlying storage when reading and writing the table.   bucket 1 Integer Bucket number for file store.   bucket-key (none) String Specify the table store distribution policy. Data is assigned to each bucket according to the hash value of bucket-key.
+If you specify multiple fields, delimiter is &#39;,&#39;.</description>
+    </item>
+    
+    <item>
+      <title>Versions</title>
+      <link>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>//nightlies.apache.org/flink/flink-table-store-docs-release-0.3/versions/</guid>
+      <description>Versions #  An appendix of hosted documentation for all versions of Apache Flink Table Store.
+ v0.2    </description>
+    </item>
+    
+  </channel>
+</rss>
